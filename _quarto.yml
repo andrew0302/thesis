@@ -1,0 +1,27 @@
+project:
+  type: book
+
+book:
+  title: "Ground Truthing is a Field"
+  author: "Andrew M. Demetriou"
+  date: "3/26/2025"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - _chapters/ISMIR_2018/ISMIR_2018.qmd
+    - _chapters/ISMIR_2020/ISMIR_2020.qmd
+    - _chapters/ISMIR_2024/ISMIR_2024.qmd
+  
+separate-references: true
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+csl: apa.csl

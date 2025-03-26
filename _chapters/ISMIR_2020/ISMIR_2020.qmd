@@ -1,0 +1,1006 @@
+---
+title: "Butter Lyrics Over Harmony Grit"
+format: html
+bibliography: ISMIRtemplate.bib
+---
+
+# Introduction
+
+[^1]
+
+Popular Western music very often contains lyrics. Social science
+research has shown informative relationships between popular songs and
+their lyrical content: e.g., country music lyrics rarely include
+political concepts (Van Sickel 2005), songs with more typical (North,
+Krause, and Ritchie 2020) and more negative (Brand, Acerbi, and Mesoudi
+2019) lyrics appear to be more successful, and the psychological content
+of song lyrics appears to correlate with cultural changes in
+psychological traits (DeWall et al. 2011). As for music consumption,
+lyrics have also been shown to be a salient component of music in the
+minds of listeners (Demetriou et al. 2018). Furthermore, (Howlin and
+Rooney 2020) showed that patients are more likely to choose music with
+lyrics when participating in music-based pain reduction interventions;
+(Ali and Peynircioğlu 2006) showed that lyrics enhance self reported
+emotional responses to music, although melody had an overall larger
+effect, and (Brattico et al. 2011) showed a number of additional brain
+regions were active during the listening of sad music with lyrics,
+vs. sad music without lyrics.
+
+In the Music Information Retrieval (MIR) field, some interest for lyrics
+and how they can be used to improve MIR tasks has been shown. Popular
+uses of lyrics for MIR tasks consider mood classification (X. Hu and
+Downie 2010; McVicar, Freeman, and Bie 2011; Y. Hu, Chen, and Yang 2009;
+Wang et al. 2011), genre classification (Mayer, Neumayer, and Rauber
+2008; Tsaptsinos 2017) and topic detection for indexing and browsing
+(Kleedorfer, Knees, and Pohle 2008; Sasaki et al. 2014). (Ellis et al.
+2015) also proposed a metric to assess the novelty of lyrics, and
+suggested that novelty can play a role in music preference.
+
+From these findings, one can conclude that lyrics are a rich data
+source. Although MIR interests have historically focused more on audio,
+lyrics information may fruitfully be leveraged for various MIR tasks.
+Still, there are many possible ways to extract information from lyrics
+text, and it is an open question what information extraction procedure
+will turn out most fruitful. To gain more insight into this, we present
+a study investigating several textual feature sets. In shaping these
+sets—acknowledging potential value of the topic for social science
+research—we are inspired by the way text analysis has been performed in
+the Psychology domain, and draw several of our extractors from prior
+work in that field. We will assess the performance of these textual
+feature sets on 3 common MIR tasks, and will statistically control for
+the effect of each chosen feature set, including an audio feature set
+for comparison. Our analysis will be performed on a large dataset from
+the online Musixmatch lyrics catalogue.
+
+In the remainder of the paper, in
+Section <a href="#sec:relatedworks" data-reference-type="ref"
+data-reference="sec:relatedworks">2</a>, we discuss relevant previous
+work on text information extraction in the Psychology literature.
+Section <a href="#sec:resdes" data-reference-type="ref"
+data-reference="sec:resdes">3</a> will subsequently explain our research
+design, after which
+Section <a href="#sec:featset" data-reference-type="ref"
+data-reference="sec:featset">4</a> discusses the feature sets we used.
+Section <a href="#sec:data" data-reference-type="ref"
+data-reference="sec:data">5</a> describes the data collection and
+pre-processing procedures, after which
+Section <a href="#sec:exp" data-reference-type="ref"
+data-reference="sec:exp">6</a> details the experimental design.
+Section <a href="#sec:analysis" data-reference-type="ref"
+data-reference="sec:analysis">7</a> justifies our chosen analytical
+strategy, followed by a presentation of results in
+Section <a href="#sec:result" data-reference-type="ref"
+data-reference="sec:result">8</a> and the conclusion in
+Section <a href="#sec:conclusion" data-reference-type="ref"
+data-reference="sec:conclusion">10</a>.
+
+# Related Work
+
+The field of Psychology has long pondered the importance of the words
+people choose to use, and how this reflects their individual differences
+(Tausczik and Pennebaker 2010). The features we use in present work are
+primarily inspired by two prior lines of work in which Natural Language
+Processing (NLP) techniques were applied in psychology research: one
+employing closed-vocabulary lexicon approaches, the other employing open
+vocabulary approaches. Firstly, (Neuman et al. 2016) used NLP techniques
+to derive estimates of personality for music genres. Specifically, they
+created a lexicon (a meaningful group of words) from psychology research
+that described personality dimensions, as well as a corpus of lyrics,
+separated into music genres. They then computed the similarity between
+the lyrics of music genres and the groups of personality dimension
+words, and considered this result to be an estimate of the personality
+dimension represented in the lyrics of each genre. Lexicon-based
+approaches have generally been popular, also thanks to the release of
+the Linguistic Inquiry Word Count (LIWC) lexicon-based
+software (Pennebaker et al. 2015); e.g., in the context of
+lyrics, (Markowitz and Hancock 2017) used it to examine psychological
+distress in the lyrics of musicians that committed suicide vs. those who
+had not.
+
+Secondly, (Schwartz et al. 2013) demonstrated the usefulness of an open
+vocabulary approach vs. a lexicon approach while examining personality
+in the context of online social networks. Although lexicons are
+carefully curated and meaningful, they are also time-consuming to create
+and context-specific. In contrast, data-driven techniques can
+automatically estimate latent topics from groups of words that tend do
+appear together. (Schwartz et al. 2013) showed relationships between
+personality scores and automatically extracted latent topics. Further,
+they showed that the open vocabulary approach may have stronger
+correlations to self-reported personality scores than the
+closed-vocabulary lexicon approaches.
+
+# Research Design
+
+<figure id="fig:experimental_pipeline">
+<embed src="latex/figs/LyricPsych_Overview.pdf" style="width:90.0%" />
+<figcaption>Overview of the experimental pipeline.</figcaption>
+</figure>
+
+In this study, we seek to examine the relative importance of lyric-based
+text features—especially features drawn from psychology research— for
+various popular MIR tasks. We wish to compare this importance to that of
+conventional audio based features.
+
+An overview of our experimental pipeline is given in
+Figure <a href="#fig:experimental_pipeline" data-reference-type="ref"
+data-reference="fig:experimental_pipeline">1</a>. Various feature sets
+will feed into various systems, that are appropriate for various MIR
+machine learning tasks. We employ a full-factorial experimental design
+for feature sets, tasks, and the systems attached to each task, which
+means we research all the possible combinations of those factors. For
+each combination, we will employ the traditional train-validation-test
+machine learning setup. Performance results on the test sets will feed
+into our statistical analysis, where we will explicitly control for the
+effect of each of the feature sets.
+
+# Feature Sets
+
+In this work, we will consider 5 lyric-based text feature sets and an
+audio-based feature set. More details are given in the following
+subsections; a summary of the dimensionalities of all feature sets is
+given in Table <a href="#tab:feat_dim" data-reference-type="ref"
+data-reference="tab:feat_dim">1</a>.
+
+## Linguistic Features
+
+As baseline textual features for this study, we first extract several
+simple *linguistic* features:
+
+- *NumWords:* the number of words included in the lyrics text.
+
+- *NumUniqueWords:* the number of unique words in the lyrics text.
+
+- *NumStopWords:* the number of stop words in the lyrics text[^2].
+
+- *NumRareWords* the number of words that appeared in less than $`5`$
+  lyrics.
+
+- *NumCommonWords* the number of words extremely commonly used within a
+  lyrics corpus. We set the threshold as the 30% percentile of the
+  document frequency of words.
+
+Along with the absolute number, we also compute the ratio over the total
+number of words for each lyrics text.
+
+## Topic Modeling
+
+As a more advanced feature extraction technique, we employ probabilistic
+Latent Semantic Analysis (pLSA) (Hofmann 2001) for *topic* modeling. We
+treat each of the lyric texts as a document, and will take the found
+topic distribution for a given document as the document feature. We
+chose the number of topics $`K=25`$, which maximizes validation
+log-perplexity. Taking advantage of the unsupervised learning setup, we
+use the total pool of songs to setup the training-validation-test split.
+
+## LIWC
+
+Linguistic Inquiry Word Count (LIWC) is a software package built on a
+lexicon that has been validated for text analysis in psychological
+studies (Pennebaker et al. 2015). It uses a curated lexicon, separated
+into 73 categories (e.g., the category ‘Social Processes’ includes
+references to family and friends). The software outputs the counts of
+words in a given text for each of the 73 categories. We employ the
+latest LIWC, released in 2015.
+
+## Psychology Inventory Scores
+
+We will consider two more feature sets, inspired by psychology inventory
+scores: a feature set focusing on *personality* and a feature set
+focusing on *values*. In both cases, we will use lexicons from
+literature. However, rather than performing a word count as was done in
+LIWC, we will use more contemporary NLP techniques based on word
+embeddings.
+
+Contemporary personality theory is derived from lexical studies: it has
+been suggested that meaningful individual psychological differences
+between people are captured in the adjectives that describe people
+(Goldberg 1990). Although the number of meaningful clusters of
+adjectives (called Personality Dimensions) is under debate, the OCEAN or
+Big-Five model is often used. It is composed of 5 traits : Openness to
+Experience, Conscientiousness, Extroversion, Agreeableness and
+Neuroticism (Goldberg 1990). Our *personality* feature set consists of 2
+word clusters per dimension, comprised of words representing positive
+and negative aspects for each personality dimension, derived from prior
+research (Saucier and Goldberg 1996).
+
+Personal *values* are another important component of identity, though
+less studied. They are stable over time and represent who people want to
+be, targeting the most important things for them in life at the most
+abstract level. The traditional way to obtain people’s personal values
+is through questionnaires, but recent works focused on NLP techniques to
+extract them from text (S. Wilson et al. 2016; S. R. Wilson, Shen, and
+Mihalcea 2018; Liu et al. 2019). In our work, we used the value
+inventory and lexicon from (S. R. Wilson, Shen, and Mihalcea 2018).
+
+Both for the *personality* and *values* feature sets, we will exploit
+the `word2vec` model (Mikolov et al. 2013) to approximate distances
+between lyrics and the various inventory categories in the feature sets.
+For this, we use the model pre-trained on the Google News dataset[^3].
+The average distance score $`s_{d,c}`$ for each lyric text $`d`$, and
+category $`c`$ is computed by taking the average cosine distance between
+the words belonging to the lyrics and the categories, respectively:
+``` math
+s_{d, c} = \frac{1}{|\mathcal{W}_d||\mathcal{W}_c|}\sum_{n\in\mathcal{W}_d}\sum_{m\in\mathcal{W}_c} \frac{\langle \mathbf{v}_n, \mathbf{v}_m \rangle}{||\mathbf{v}_n|| \cdot ||\mathbf{v}_m||}
+```
+where $`\mathcal{W}_d`$ and $`\mathcal{W}_c`$ represent the set of words
+belonging to the lyrics text $`d`$ and the category $`c`$. $`v_n`$ and
+$`v_m`$ denote the pre-trained word vectors corresponding to word $`n`$
+in the lyrics and word $`m`$ in the category, respectively.
+
+## MFCC
+
+Finally, we employ a set of audio features based on the Mel-Frequency
+Cepstral Coefficients (MFCC). We include these, such that the effect of
+the lyric-based text features can be compared to a commonly used feature
+set from the primary modality of interest in many MIR tasks.
+Specifically, we adopt the feature computation introduced in (Choi et
+al. 2017) with $`40`$ mel bins.
+
+<div id="tab:feat_dim">
+
+| Feature Set | Dimensions |     |
+|:-----------:|:----------:|:---:|
+|    Audio    |     240    |     |
+|    LIWC     |     73     |     |
+|   Values    |     49     |     |
+|   Topics    |     25     |     |
+| Personality |     10     |     |
+| Linguistic  |      9     |     |
+
+Number of dimensions per feature set
+
+</div>
+
+# Data Collection
+
+We analyzed the lyrics contained in the Musixmatch dataset[^4], which is
+the official lyrics metadata selection integrated in the Million Song
+Dataset (MSD)  (Bertin-Mahieux et al. 2011), a collection of relevant
+data and metadata for one million popular contemporary songs.
+[Musixmatch](https://www.musixmatch.com/) is a lyrics and music language
+platform. The Musixmatch community drives the content production by
+adding, correcting, syncing and translating lyrics of songs. The process
+of lyrics quality verification involves several steps, including spam
+detection, formatting, spelling and translation checking. These steps
+are accomplished by the use of both artificial intelligence and machine
+learning models. In addition, they are manually verified by more than
+$`2000`$ Curators worldwide, and a local team of Musixmatch Editors, who
+are native speakers in different languages.
+
+The data used for the purpose of this project consists of $`182,808`$
+lyrics, plus relevant metadata such as the unique identifier, artist and
+title. The data encompasses $`20,219`$ unique artists over various
+genres of music.
+
+## Preprocessing
+
+For the given lyrics dataset, we consider the following preprocessing
+steps: the sentence strings are 1) tokenized and 2) lemmatized, followed
+by 3) stop-words filtering and 4) filtering extremely rare and extremely
+common words (see
+Section <a href="#sec:featset:lingfeat" data-reference-type="ref"
+data-reference="sec:featset:lingfeat">4.1</a>). Finally, we filter out
+non-English lyrics by a filtering process using the topic modeling. More
+precisely, we fit the topic model to detect whether the topics contain
+non-English words above a certain threshold. Songs that mostly load on
+non-English topics are removed.
+
+# Experiment
+
+## Tasks & Systems
+
+As shown in
+Figure <a href="#fig:experimental_pipeline" data-reference-type="ref"
+data-reference="fig:experimental_pipeline">1</a>, to assess the lyrics
+feature set, we consider $`3`$ popular MIR machine learning tasks; for
+each of these, we use $`3`$ different commonly used types of systems,
+and a task-specific performance measure is considered, as detailed
+below.
+
+### Music Genre Classification
+
+Music Genre Classification (MGC) is a multi-class classification
+problem. Typically, a set of music genres is given as the classes, and
+music audio content or features are used as the observations. In this
+study, we examine $`3`$ machine learning based systems: *Gaussian Naive
+Bayes* (GNV), *Logistic Regression* (LR) and the *Multi-Layer
+Perceptron* (MLP). For performance quantification, we opt for
+*classification accuracy*.
+
+For this task, we use the data in the intersection between our lyrics
+database and the part of the MSD for which the music genre mapping
+introduced in (Schreiber 2015) can be made. By choosing the intersection
+with the MSD, our audio features can be extracted from the MSD preview
+audio excerpts. Due to genre label availability, this leads to
+$`67,719`$ songs being used in this task.
+
+### Music Auto-Tagging
+
+Music Auto-Tagging (MAT) is often formulated as a multi-label
+classification problem in which multiple positive labels may exist for
+one input music observation. We used the same set of systems as in the
+MGC task[^5]. Again, we cross-match to the MSD, now also considering
+MSD’s LastFM social tags. Similarly to (Choi et al. 2017), we choose to
+focus on the $`50`$ most frequent tags from the dataset. The *Area Under
+Curve - Receiver Operating Characteristic* (AUC-ROC) is used as the
+performance measure, which will be referred to as $AUC^{\text{song}}$ for the
+rest of this paper[^6]. Due to tagging label availability, $`137,095`$
+songs are used under this task.
+
+### Music Recommendation
+
+Finally, Music Recommendation (MR) is considered for a user-related
+retrieval task. In particular, we consider a cold-start scenario, in
+which a batch of songs is newly introduced to the market, and required
+to be recommended to users. Due to the lack of previous interaction
+history, in such a scenario, a model will be maximally dependent on item
+attributes. As this is a substantially different type of task than the
+previous classification tasks, a different set of the systems common to
+the recommender systems field is used. *Item Nearest Neighbor* (INN) is
+a memory-based collaborative filtering method, which recommends the
+items closest to those that the user had consumed. We employ the feature
+vector introduced in
+Section <a href="#sec:featset" data-reference-type="ref"
+data-reference="sec:featset">4</a> to compute the distance between
+entities using the cosine distance. We also use the *Feature-augmented
+Matrix Factorization* (FMF) (Liang, Zhan, and Ellis 2015) method, as
+well as the *Factorization Machine* (Rendle 2010) (FM). These models are
+more sophisticated collaborative recommenders, which also are capable of
+exploiting item attributes. The systems are developed and evaluated
+using the MSD-Echonest dataset (Bertin-Mahieux et al. 2011). Due to
+limits on available computational resources, we exploit a densified
+subset with $`96,551`$ users and $`66,850`$ songs from the initial song
+pool with the lyrics[^7]. Finally, the binarized *normalized Discounted
+Cumulative Gain* (nDCG) is considered as performance measure, for the
+top-$`100`$ songs recommended.
+
+## Task Simulation Setup
+
+All MIR tasks above are machine learning tasks, but the systems and data
+we choose to use for them did not yet exist in a real-life system.
+Therefore, we ran the machine learning procedures to initiate them. For
+this, for each task, we randomly split the available song data into
+*training*/*validation*/*test* subsets by a ratio of $`8:1:1`$. Each
+model is trained using the *training* set and evaluated on the
+*validation* set to tune the hyper-parameters. Once the optimal
+hyper-parameters are found, final performance is measured on the the
+*test* set.
+
+For MLP and FMF, which have more than one hyper-parameter, automatic
+hyper-parameter tuning is conducted through a Bayesian approach, using
+the Gaussian Process[^8][^9]. Every search process iterates through
+$`50`$ training-validation procedures to reach the optimal point. For
+the MGC and MAT tasks, the hyper-parameters are searched at every trial,
+while in the MR task, the search process runs only once and is used for
+all the other trials.
+
+# Analytic Strategy
+
+We wish to assess the usefulness of each of the feature sets for the 3
+MIR tasks. Therefore, the resulting performance score from each trial
+run in our experimental setup (see
+Section <a href="#sec:resdes" data-reference-type="ref"
+data-reference="sec:resdes">3</a>) forms the measurement that is our
+outcome variable of interest. We seek to estimate the relative
+contribution of each feature set, while statistically controlling for
+the contribution of all other variables in the analysis. In addition, we
+assess whether feature sets perform better or worse, depending on the
+task.
+
+Our data has a nested structure. Specifically, we might say that our
+systems are nested within the tasks: each task is likely to influence
+the score, as will the underlying systems that were used for each task.
+Further, not all systems were used in all tasks. To account for this
+structure, we employed hierarchical regression models which allow for
+the modeling of variances of nested data.
+
+The typical example for this category of models is the task of modeling
+the standardized test scores of various students within various schools.
+Test scores may be due to the performance of the student, but the school
+itself may also influence the scores. In this case, the students are
+said to be nested within the school. If we wanted to accurately assess
+the effect of e.g. a specific teaching technique on the scores of the
+students, we would want to statistically control for the effect of the
+nested structure. A hierarchical regression allows for us to estimate
+the variance in both intercept and slope of the school, to more
+accurately assess the effect of the teaching technique on the score of
+the student. For example, the following equations allow us to model the
+varying intercepts and slopes of each school:
+
+``` math
+\begin{aligned}
+y_i = a_{j[i]} + \beta x_i + \epsilon_i \label{eq:1}\\ 
+\alpha_j = a_0 + b_0 u_j + \eta_{j1} \label{eq:2}\\
+\beta_j = a_1 + b_1 u_j + \eta_{j2} \label{eq:3}
+\end{aligned}
+```
+where $`i`$ refers to the individual students, and $`j[i]`$ refers to
+the school that student $`i`$ attends. The first line is similar to a
+classic regression, where the $`x`$ represents a predictor at the level
+of student, the teaching technique in our example, and the $`\epsilon`$
+represents the error term of the main regression. However, equations
+(<a href="#eq:2" data-reference-type="ref"
+data-reference="eq:2">[eq:2]</a>) and
+(<a href="#eq:3" data-reference-type="ref"
+data-reference="eq:3">[eq:3]</a>) allow for the modeling of the
+intercept and slope respectively, where the $`u`$ and $`\eta`$
+expressions are the predictors and error terms at the school levels.
+
+By statistically controlling for these additional variances,
+hierarchical modeling allows for a more precise estimate of the
+variables of interest. A more complete discussion can be found in
+(Gelman and Hill 2006).
+
+In our study, we treat the task similarly to the school in our example,
+and the systems similarly to the students. By controlling for these
+variances, we estimate the effect of each feature set. From the
+resulting parameter estimates, we extract 95 % confidence intervals,
+which we then interpret for our results.
+
+This approach also allows for the comparison of models containing
+different specifications, where the specifications refer to which
+specific parameter estimates are computed. As some parameters may not
+meaningfully contribute to the variance, their effects will be estimated
+at very close to 0, and may be removed to improve model fit. Indices of
+fitness, i.e. Akaike and Bayesian Information Criteria (AIC and BIC
+respectively) give an estimate of model fit, which is penalized by the
+number of terms. We can therefore arrive at the best-fitting model with
+the fewest parameters estimated, by systematically removing poorly
+performing parameter estimates, comparing successive fit indices e.g.
+with a Likelihood Ratio Test.
+
+Following from our strategy, we examined the usefulness of the inclusion
+of the various features sets on the 3 considered MIR tasks. Our
+variables of interest are 1) binary indicators for the inclusion of each
+of the feature sets: *linguistic*, *topic*, *LIWC*, *personality*, and
+*values*, as well as the set of audio features, where (0 = not included,
+1 = included), 2) a categorical variable representing each of the MIR
+tasks, 3) a categorical variable representing the systems implemented
+within each task, and 4) the resulting Measurement scores which were
+standardized within each task for comparability. We further estimate
+whether feature sets perform better or worse for certain tasks, by
+examining interactions between each feature set, and our task variable.
+Feature sets had differing numbers of sub-dimensions which were not
+individually analyzed (see Table
+<a href="#tab:feat_dim" data-reference-type="ref"
+data-reference="tab:feat_dim">1</a>)[^10].
+
+We ran multiple models and compared the results of our feature sets
+across specifications (see Figure 2). Model specifications varied based
+on 1) how we accounted for the nested structure (i.e. task and systems),
+as we can estimate intercepts for task, for system, for system within
+task, as well as as slopes for tasks, for systems, and for systems
+within task, etc., and 2) the interaction terms we specified, i.e.
+whether we estimated an interaction term for a given feature set and our
+task variable.
+
+<figure id="fig:parameterestimates">
+<embed src="latex/figs/figure2.pdf" />
+<figcaption>A: Parameter estimates of 5 hierarchical regression models.
+Error bars are 95% confidence intervals, bootstrapped 500 times. B:
+Specific parameters that are estimated in the each of the models.
+Parameters that form the structure of the model are denoted both in red
+and with a “!” symbol, feature sets of primary interest are denoted in
+black, and variables for which two terms separated by a “*” are
+interaction terms.</figcaption>
+</figure>
+
+# Results
+
+<figure id="fig:parameterestimates4">
+<embed src="latex/figs/figure3.pdf" />
+<figcaption>A: Parameter estimates of model 4. Error bars are 95%
+confidence intervals. Interaction terms are denoted with the “*” symbol.
+B: Predicted scores for the inclusion of <em>LIWC</em> on each of three
+MIR tasks, where 1 indicates that it was included and 0 indicates that
+it was not. C: Predicted scores for the inclusion of <em>values</em> on
+each of three MIR tasks, where 1 indicates that it was included and 0
+indicates that it was not.</figcaption>
+</figure>
+
+We assessed models with two nested structures specified, where the
+parameters estimated are referred to as “random effects”. The first
+included intercepts for each task, and the system used within task. The
+second estimated the same intercepts, and additionally estimated a slope
+for each system. For each of these two random effects structures, we
+then determined which parameters to estimate, referred to as “fixed
+effects”. Specifically, we estimated parameters for each feature set,
+and interactions between all feature sets and the tasks. We first
+specified a “maximal” model, with all features and the task variable,
+and all two-way interactions among these variables. To remove
+unnecessary parameters, we ran a protocol which iteratively removed
+parameter estimates, retaining only those that either 1) significantly
+decrease model fit if not included, or 2) do not significantly decrease
+model fit if excluded. The Step function in the *lmerTest* package, was
+used for this phase (Kuznetsova, Brockhoff, and Christensen 2017). What
+remained were two interaction terms: the interaction between *values*
+and task, and between *LIWC* and task. As such, we estimated models with
+no interaction terms, as well as models with and without each of those
+interaction terms. When we assessed the interaction term, we also
+included the main effect of task. Thus, we also ran models with and
+without task included. The 5 models included for interpretation were
+those that converged without error. Parameter estimates are shown in
+Figure <a href="#fig:parameterestimates" data-reference-type="ref"
+data-reference="fig:parameterestimates">2</a>A, and
+Figure <a href="#fig:parameterestimates" data-reference-type="ref"
+data-reference="fig:parameterestimates">2</a>B shows which parameters
+were estimated in each model. For the full specification of our models,
+we refer readers to the reproducibility package[^11] accompanying this
+paper.
+
+As is shown in
+Figure <a href="#fig:parameterestimates" data-reference-type="ref"
+data-reference="fig:parameterestimates">2</a>A, we observe a consistent,
+large, positive effect of *audio features* on the score, and no
+meaningful effects of *topic* and *personality* feature sets. Further,
+we observe a consistent, small, positive effect of *values* across our
+specifications. This effect size increases in model 4, where the
+interaction between values and task was included. Similarly, *LIWC*
+shows a small but positive effect, that appears to decrease when the
+interaction term of *LIWC* and task is included. This suggests that
+*LIWC* and *values* may perform differently, depending on the task.
+
+To clarify if this is the case, we examined the parameter estimates of
+model 4, which included interaction terms for both *LIWC* and *values*
+(see Figure <a href="#fig:parameterestimates4" data-reference-type="ref"
+data-reference="fig:parameterestimates4">3</a>A). Although both
+interaction terms were statistically significant, we observe that the
+confidence intervals for the main effect of task are very wide. This was
+expected, as 1) we were assessing an interaction effect which might
+increase the width of a the confidence interval, and 2) we were largely
+accounting for this variance by standardizing the score within each
+task, and by including task in the random effect structure.
+Figures <a href="#fig:parameterestimates4" data-reference-type="ref"
+data-reference="fig:parameterestimates4">3</a>A
+and <a href="#fig:parameterestimates4" data-reference-type="ref"
+data-reference="fig:parameterestimates4">3</a>B show the predicted
+values for both *LIWC* and *values* across tasks. Although the score was
+higher when *LIWC* was included in the MR task and when *values* was
+included in the MAT task, the predicted estimates are imprecise, as
+evidenced by the wide confidence intervals. As such, a more sensitive
+study design is likely required to obtain estimates of these interaction
+effects, e.g. analyses on individual dimensions of feature sets, to
+establish the most informative features, and/or more systems and more
+MIR tasks. Thus, we conclude that *linguistic* and *values* feature sets
+show the most consistent positive effects, and that *LIWC* and *values*
+may vary in performance based on task.
+
+# Limitations and Future Works
+
+Several limitations are still present in our current study. Firstly,
+although our feature sets did show promising yet small effect sizes, we
+did not assess the performance of individual dimensions. Given that the
+feature sets vary greatly in both in terms of the number and content of
+sub-dimensions (see
+Table <a href="#tab:feat_dim" data-reference-type="ref"
+data-reference="tab:feat_dim">1</a>), reducing the overall set may
+result in a more sensitive set of features to examine.
+
+Secondly, we did not consider subgroups of users, or of groups of songs.
+It may be possible that some users are more sensitive to the content of
+lyrics than others, and that lyric-sensitive users would benefit far
+more from lyric features than others. Further, it may be the case that
+lyrics are very important in some groups of songs vs. others (e.g
+Hip-Hop music vs. electronic dance music). Further research could
+examine the potential existence of a lyric-sensitive sub-group of users,
+lyric-sensitive songs, and how these two may interact.
+
+Thirdly, aspects of our experimental design can be elaborated in future
+work: 1) Although we strategically sampled a limited number of MIR tasks
+and a limited number of systems, we did not fully address all
+possibilities. For instance, future work can include more contemporary
+systems such as deep learning, thereby increasing generalizability of
+our results. 2) Certain task metrics could be improved, although we
+strategically designed our experiment to prevent local noise from
+skewing our conclusions: e.g. a different performance measure for the
+genre classification (i.e. AUC-ROC) could deliver a more accurate
+experimental result, given its skewed class distribution.
+
+Lastly, the reliability of all of our feature sets could be better
+assessed in the future. This is particularly true of our *personality*
+features: they contain words that have been shown to describe
+individuals that have or lack in personality traits, but it is not clear
+that individuals with those traits use the specific words that describe
+them.
+
+# Conclusion
+
+Although the *audio* features in our analysis most positively affected
+performance on various MIR tasks, our lyric-based text features did show
+some promise. More specifically, *linguistic* and *values* feature sets
+showed consistent, small effect sizes. Given that the interactions
+between *LIWC* and task were significant, it may be the case that *LIWC*
+features are also useful. We can conclude that text-based features drawn
+from Psychology literature anticipate further research, and that further
+investigations addressing the current limitations will lead to better
+data-driven understanding of the role lyrics play in music consumption.
+
+# Acknowledgement
+
+This work was carried out on the Dutch national e-infrastructure with
+the support of SURF Cooperative.
+
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
+
+<div id="ref-ali2006songs" class="csl-entry">
+
+Ali, S Omar, and Zehra F Peynircioğlu. 2006. “Songs and Emotions: Are
+Lyrics and Melodies Equal Partners?” *Psychology of Music* 34 (4):
+511–34.
+
+</div>
+
+<div id="ref-DBLP:conf/ismir/Bertin-MahieuxEWL11" class="csl-entry">
+
+Bertin-Mahieux, Thierry, Daniel P. W. Ellis, Brian Whitman, and Paul
+Lamere. 2011. “The Million Song Dataset.” In *Proceedings of the 12th
+International Society for Music Information Retrieval Conference, ISMIR
+2011, Miami, Florida, USA, October 24-28,2011*, edited by Anssi Klapuri
+and Colby Leider, 591–96. University of Miami.
+
+</div>
+
+<div id="ref-DBLP:books/daglib/0022921" class="csl-entry">
+
+Bird, Steven, Ewan Klein, and Edward Loper. 2009. *Natural Language
+Processing with Python*. O’Reilly.
+
+</div>
+
+<div id="ref-brand2019cultural" class="csl-entry">
+
+Brand, Charlotte O, Alberto Acerbi, and Alex Mesoudi. 2019. “Cultural
+Evolution of Emotional Expression in 50 Years of Song Lyrics.”
+*Evolutionary Human Sciences* 1: 1–14.
+
+</div>
+
+<div id="ref-brattico2011functional" class="csl-entry">
+
+Brattico, Elvira, Vinoo Alluri, Brigitte Bogert, Thomas Jacobsen, Nuutti
+Vartiainen, Sirke Katriina Nieminen, and Mari Tervaniemi. 2011. “A
+Functional MRI Study of Happy and Sad Emotions in Music with and Without
+Lyrics.” *Frontiers in Psychology* 2: 1–16.
+
+</div>
+
+<div id="ref-DBLP:conf/ismir/ChoiFSC17" class="csl-entry">
+
+Choi, Keunwoo, György Fazekas, Mark B. Sandler, and Kyunghyun Cho. 2017.
+“Transfer Learning for Music Classification and Regression Tasks.” In
+*Proceedings of the 18th International Society for Music Information
+Retrieval Conference, ISMIR 2017, Suzhou, China, October 23-27, 2017*,
+edited by Sally Jo Cunningham, Zhiyao Duan, Xiao Hu, and Douglas
+Turnbull, 141–49.
+
+</div>
+
+<div id="ref-demetriou2018vocals" class="csl-entry">
+
+Demetriou, Andrew, Andreas Jansson, Aparna Kumar, and Rachel M. Bittner.
+2018. “Vocals in Music Matter: The Relevance of Vocals in the Minds of
+Listeners.” In *Proceedings of the 19th International Society for
+Retrieval Conference, ISMIR 2018, Paris, France, September 23-27, 2018*,
+edited by Emilia Gómez, Xiao Hu, Eric Humphrey, and Emmanouil Benetos,
+514–20.
+
+</div>
+
+<div id="ref-dewall2011tuning" class="csl-entry">
+
+DeWall, C Nathan, Richard S Pond Jr, W Keith Campbell, and Jean M
+Twenge. 2011. “Tuning in to Psychological Change: Linguistic Markers of
+Psychological Traits and Emotions over Time in Popular US Song Lyrics.”
+*Psychology of Aesthetics, Creativity, and the Arts* 5 (3): 200–207.
+
+</div>
+
+<div id="ref-ellis2015quantifying" class="csl-entry">
+
+Ellis, Robert J, Zhe Xing, Jiakun Fang, and Ye Wang. 2015. “Quantifying
+Lexical Novelty in Song Lyrics.” In *ISMIR*, 694–700.
+
+</div>
+
+<div id="ref-gelman2006data" class="csl-entry">
+
+Gelman, Andrew, and Jennifer Hill. 2006. *Data Analysis Using Regression
+and Multilevel/Hierarchical Models*. Cambridge university press.
+
+</div>
+
+<div id="ref-goldberg1990alternative" class="csl-entry">
+
+Goldberg, Lewis R. 1990. “An Alternative "Description of Personality":
+The Big-Five Factor Structure.” *Journal of Personality and Social
+Psychology* 59 (6): 1216–29.
+
+</div>
+
+<div id="ref-DBLP:journals/ml/Hofmann01" class="csl-entry">
+
+Hofmann, Thomas. 2001. “Unsupervised Learning by Probabilistic Latent
+Semantic Analysis.” *Machine Learning* 42 (1/2): 177–96.
+<https://doi.org/10.1023/A:1007617005950>.
+
+</div>
+
+<div id="ref-howlin2020patients" class="csl-entry">
+
+Howlin, Claire, and Brendan Rooney. 2020. “Patients Choose Music with
+High Energy, Danceability, and Lyrics in Analgesic Music Listening
+Interventions.” *Psychology of Music* 0 (0): 1–14.
+<https://doi.org/10.1177/0305735620907155>.
+
+</div>
+
+<div id="ref-hu2010lyrics" class="csl-entry">
+
+Hu, Xiao, and J. Stephen Downie. 2010. “When Lyrics Outperform Audio for
+Music Mood Classification: A Feature Analysis.” In *Proceedings of the
+11th International Society for Music Information Retrieval Conference,
+ISMIR 2010, Utrecht, Netherlands, August 9-13, 2010*, edited by J.
+Stephen Downie and Remco C. Veltkamp, 619–24. International Society for
+Music Information Retrieval.
+
+</div>
+
+<div id="ref-hu2009lyric" class="csl-entry">
+
+Hu, Yajie, Xiaoou Chen, and Deshun Yang. 2009. “Lyric-Based Song Emotion
+Detection with Affective Lexicon and Fuzzy Clustering Method.” In
+*Proceedings of the 10th International Society for Music Information
+Retrieval Conference, ISMIR 2009, Kobe International Conference Center,
+Kobe, Japan, October 26-30, 2009*, edited by Keiji Hirata, George
+Tzanetakis, and Kazuyoshi Yoshii, 123–28. International Society for
+Music Information Retrieval.
+
+</div>
+
+<div id="ref-kleedorfer2008oh" class="csl-entry">
+
+Kleedorfer, Florian, Peter Knees, and Tim Pohle. 2008. “Oh Oh Oh Whoah!
+Towards Automatic Topic Detection in Song Lyrics.” In *Proceedings of
+the 9th International Society for Music Information Retrieval
+Conference, ISMIR 2008, Drexel University, Philadelphia, PA, USA,
+September 14-18, 2008*, edited by Juan Pablo Bello, Elaine Chew, and
+Douglas Turnbull, 287–92.
+
+</div>
+
+<div id="ref-kuznetsova2017lmertest" class="csl-entry">
+
+Kuznetsova, Alexandra, Per B Brockhoff, and Rune Haubo Bojesen
+Christensen. 2017. “<span class="nocase">lmerTest</span> Package: Tests
+in Linear Mixed Effects Models.” *Journal of Statistical Software* 82
+(13).
+
+</div>
+
+<div id="ref-DBLP:conf/ismir/LiangZE15" class="csl-entry">
+
+Liang, Dawen, Minshu Zhan, and Daniel P. W. Ellis. 2015. “Content-Aware
+Collaborative Music Recommendation Using Pre-Trained Neural Networks.”
+In *Proceedings of the 16th International Society for Music Information
+Retrieval Conference, ISMIR 2015, málaga, Spain, October 26-30, 2015*,
+edited by Meinard Müller and Frans Wiering, 295–301.
+
+</div>
+
+<div id="ref-liu2019personality" class="csl-entry">
+
+Liu, Hui, Yinghui Huang, Zichao Wang, Kai Liu, Xiangen Hu, and Weijun
+Wang. 2019. “Personality or Value: A Comparative Study of Psychographic
+Segmentation Based on an Online Review Enhanced Recommender System.”
+*Applied Sciences* 9 (10): 1–28.
+
+</div>
+
+<div id="ref-markowitz201727" class="csl-entry">
+
+Markowitz, David M, and Jeffrey T Hancock. 2017. “The 27 Club: Music
+Lyrics Reflect Psychological Distress.” *Communication Reports* 30 (1):
+1–13.
+
+</div>
+
+<div id="ref-mayer2008rhyme" class="csl-entry">
+
+Mayer, Rudolf, Robert Neumayer, and Andreas Rauber. 2008. “Rhyme and
+Style Features for Musical Genre Classification by Song Lyrics.” In
+*Proceedings of the 9th International Society for Music Information
+Retrieval Conference, ISMIR 2008, Drexel University, Philadelphia, PA,
+USA, September 14-18, 2008*, edited by Juan Pablo Bello, Elaine Chew,
+and Douglas Turnbull, 337–42.
+
+</div>
+
+<div id="ref-mcvicar2011mining" class="csl-entry">
+
+McVicar, Matt, Tim Freeman, and Tijl De Bie. 2011. “Mining the
+Correlation Between Lyrical and Audio Features and the Emergence of
+Mood.” In *Proceedings of the 12th International Society for Music
+Information Retrieval Conference, ISMIR 2011, Miami, Florida, USA,
+October 24-28, 2011*, edited by Anssi Klapuri and Colby Leider, 783–88.
+University of Miami.
+
+</div>
+
+<div id="ref-DBLP:conf/nips/MikolovSCCD13" class="csl-entry">
+
+Mikolov, Tomas, Ilya Sutskever, Kai Chen, Gregory S. Corrado, and
+Jeffrey Dean. 2013. “Distributed Representations of Words and Phrases
+and Their Compositionality.” In *Advances in Neural Information
+Processing Systems 26: 27th Annual Conference on Neural Information
+Processing Systems 2013. Proceedings of a Meeting Held December 5-8,
+2013, Lake Tahoe, Nevada, United States*, edited by Christopher J. C.
+Burges, Léon Bottou, Zoubin Ghahramani, and Kilian Q. Weinberger,
+3111–19.
+
+</div>
+
+<div id="ref-neuman2016personality" class="csl-entry">
+
+Neuman, Yair, Leonid Perlovsky, Yochai Cohen, and Danny Livshits. 2016.
+“The Personality of Music Genres.” *Psychology of Music* 44 (5):
+1044–57.
+
+</div>
+
+<div id="ref-north2020relationship" class="csl-entry">
+
+North, Adrian C, Amanda E Krause, and David Ritchie. 2020.
+“<span class="nocase">The relationship between pop music and lyrics: A
+computerized content analysis of the United Kingdom’s weekly top five
+singles, 1999–2013</span>.” *Psychology of Music*, 1–24.
+<https://doi.org/10.1177/0305735619896409>.
+
+</div>
+
+<div id="ref-pennebaker2015development" class="csl-entry">
+
+Pennebaker, James W, Ryan L Boyd, Kayla Jordan, and Kate Blackburn.
+2015. “The Development and Psychometric Properties of LIWC2015.”
+
+</div>
+
+<div id="ref-DBLP:conf/icdm/Rendle10" class="csl-entry">
+
+Rendle, Steffen. 2010. “Factorization Machines.” In *Proceedings of the
+10th IEEE International Conference on Data Mining, ICDM 2010, Sydney,
+Australia, 14-17 December 2010*, edited by Geoffrey I. Webb, Bing Liu,
+Chengqi Zhang, Dimitrios Gunopulos, and Xindong Wu, 995–1000. IEEE
+Computer Society. <https://doi.org/10.1109/ICDM.2010.127>.
+
+</div>
+
+<div id="ref-sasaki2014lyricsradar" class="csl-entry">
+
+Sasaki, Shoto, Kazuyoshi Yoshii, Tomoyasu Nakano, Masataka Goto, and
+Shigeo Morishima. 2014. “LyricsRadar: A Lyrics Retrieval System Based on
+Latent Topics of Lyrics.” In *Proceedings of the 15th International
+Society for Music Information Retrieval Conference, ISMIR 2014, Taipei,
+Taiwan, October 27-31, 2014*, edited by Hsin-Min Wang, Yi-Hsuan Yang,
+and Jin Ha Lee, 585–90.
+
+</div>
+
+<div id="ref-saucier1996evidence" class="csl-entry">
+
+Saucier, Gerard, and Lewis R Goldberg. 1996. “Evidence for the Big Five
+in Analyses of Familiar English Personality Adjectives.” *European
+Journal of Personality* 10 (1): 61–77.
+
+</div>
+
+<div id="ref-DBLP:conf/ismir/Schreiber15" class="csl-entry">
+
+Schreiber, Hendrik. 2015. “Improving Genre Annotations for the Million
+Song Dataset.” In *Proceedings of the 16th International Society for
+Music Information Retrieval Conference, ISMIR 2015, málaga, Spain,
+October 26-30, 2015*, edited by Meinard Müller and Frans Wiering,
+241–47.
+
+</div>
+
+<div id="ref-schwartz2013personality" class="csl-entry">
+
+Schwartz, H Andrew, Johannes C Eichstaedt, Margaret L Kern, Lukasz
+Dziurzynski, Stephanie M Ramones, Megha Agrawal, Achal Shah, et al.
+2013. “Personality, Gender, and Age in the Language of Social Media: The
+Open-Vocabulary Approach.” *PloS One* 8 (9): 1–16.
+
+</div>
+
+<div id="ref-tausczik2010psychological" class="csl-entry">
+
+Tausczik, Yla R, and James W Pennebaker. 2010. “The Psychological
+Meaning of Words: LIWC and Computerized Text Analysis Methods.” *Journal
+of Language and Social Psychology* 29 (1): 24–54.
+
+</div>
+
+<div id="ref-tsaptsinos2017lyrics" class="csl-entry">
+
+Tsaptsinos, Alexandros. 2017. “Lyrics-Based Music Genre Classification
+Using a Hierarchical Attention Network.” In *Proceedings of the 18th
+International Society for Music Information Retrieval Conference, ISMIR
+2017, Suzhou, China, October 23-27, 2017*, edited by Sally Jo
+Cunningham, Zhiyao Duan, Xiao Hu, and Douglas Turnbull, 694–701.
+
+</div>
+
+<div id="ref-van2005world" class="csl-entry">
+
+Van Sickel, Robert W. 2005. “A World Without Citizenship: On (the
+Absence of) Politics and Ideology in Country Music Lyrics, 1960–2000.”
+*Popular Music and Society* 28 (3): 313–31.
+
+</div>
+
+<div id="ref-wang2011music" class="csl-entry">
+
+Wang, Xing, Xiaoou Chen, Deshun Yang, and Yuqian Wu. 2011. “Music
+Emotion Classification of Chinese Songs Based on Lyrics Using TF\*IDF
+and Rhyme.” In *Proceedings of the 12th International Society for Music
+Information Retrieval Conference, ISMIR 2011, Miami, Florida, USA,
+October 24-28, 2011*, edited by Anssi Klapuri and Colby Leider, 765–70.
+University of Miami.
+
+</div>
+
+<div id="ref-wilson2018building" class="csl-entry">
+
+Wilson, Steven R, Yiting Shen, and Rada Mihalcea. 2018. “Building and
+Validating Hierarchical Lexicons with a Case Study on Personal Values.”
+In *International Conference on Social Informatics*, 455–70. Springer.
+
+</div>
+
+<div id="ref-wilson2016disentangling" class="csl-entry">
+
+Wilson, Steven, Rada Mihalcea, Ryan Boyd, and James Pennebaker. 2016.
+“Disentangling Topic Models: A Cross-Cultural Analysis of Personal
+Values Through Words.” In *Proceedings of the First Workshop on NLP and
+Computational Social Science*, 143–52.
+
+</div>
+
+</div>
+
+[^1]: Quoted words are lyrics written by Clifford Smith, from the song
+    “The What”, by the Notorious B.I.G. featuring Methodman, on the
+    album “Ready to Die”, released in 1994.
+
+[^2]: As we will focus on English lyrics in this study, we used the
+    English stop words corpus from the Natural Language Toolkit
+    (NLTK) (Bird, Klein, and Loper 2009)
+
+[^3]: <https://code.google.com/archive/p/word2vec/>
+
+[^4]: <http://millionsongdataset.com/musixmatch/>
+
+[^5]: We employ a one-vs-rest strategy for the LR and GNV, which
+    transforms a multi-label classification problem to multiple binary
+    classification problems.
+
+[^6]: We employed song-wise aggregation for this study
+
+[^7]: We initially matched the original Echonest dataset to our initial
+    song pool and $`30\%`$ of randomly sampled users. Consequentially,
+    we apply a filter, such that users who interacted with more than
+    $`5`$ songs remain, and vice versa for songs.
+
+[^8]: We use the implementation from the
+    [*scikit-optimize*](https://scikit-optimize.github.io/stable/index.html)
+    package.
+
+[^9]: We do not search the hyper-parameters for FM and use a manually
+    tuned setup, mostly due to the computational complexity required for
+    this specific model.
+
+[^10]: Analyses were conducted on two servers running R 3.6.3. and
+    3.4.4.
+
+[^11]: <https://github.com/mmc-tudelft/lyricpsych-ISMIR20>
