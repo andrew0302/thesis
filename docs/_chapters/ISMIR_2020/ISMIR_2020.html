@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; “Butter Lyrics Over Hominy Grit”: Comparing Audio and Psychology-Based Text Features in MIR Tasks – Ground Truthing is a Field</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../_chapters/ISMIR_2024/ISMIR_2024.html" rel="next">
+<link href="../../_chapters/ISMIR_2018/ISMIR_2018.html" rel="prev">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-626149efe8f5d16e1d391ba177679bf0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../_chapters/ISMIR_2020/ISMIR_2020.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Butter Lyrics Over Hominy Grit”: Comparing Audio and Psychology-Based Text Features in MIR Tasks</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Ground Truthing is a Field</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../_chapters/ISMIR_2018/ISMIR_2018.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vocals in Music Matter: the Relevance of Vocals in the Minds of Listeners</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../_chapters/ISMIR_2020/ISMIR_2020.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Butter Lyrics Over Hominy Grit”: Comparing Audio and Psychology-Based Text Features in MIR Tasks</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../_chapters/ISMIR_2024/ISMIR_2024.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Towards Automated Personal Value Estimation in Song Lyrics</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec:introduction" id="toc-sec:introduction" class="nav-link active" data-scroll-target="#sec\:introduction"><span class="header-section-number">4.1</span> Introduction</a></li>
+  <li><a href="#sec:relatedworks" id="toc-sec:relatedworks" class="nav-link" data-scroll-target="#sec\:relatedworks"><span class="header-section-number">5</span> Related Work</a></li>
+  <li><a href="#sec:resdes" id="toc-sec:resdes" class="nav-link" data-scroll-target="#sec\:resdes"><span class="header-section-number">6</span> Research Design</a></li>
+  <li><a href="#sec:featset" id="toc-sec:featset" class="nav-link" data-scroll-target="#sec\:featset"><span class="header-section-number">7</span> Feature Sets</a>
+  <ul class="collapse">
+  <li><a href="#sec:featset:lingfeat" id="toc-sec:featset:lingfeat" class="nav-link" data-scroll-target="#sec\:featset\:lingfeat"><span class="header-section-number">7.1</span> Linguistic Features</a></li>
+  <li><a href="#sec:featset:topic" id="toc-sec:featset:topic" class="nav-link" data-scroll-target="#sec\:featset\:topic"><span class="header-section-number">7.2</span> Topic Modeling</a></li>
+  <li><a href="#sec:featset:LIWC" id="toc-sec:featset:LIWC" class="nav-link" data-scroll-target="#sec\:featset\:LIWC"><span class="header-section-number">7.3</span> LIWC</a></li>
+  <li><a href="#sec:featset:inventory_scores" id="toc-sec:featset:inventory_scores" class="nav-link" data-scroll-target="#sec\:featset\:inventory_scores"><span class="header-section-number">7.4</span> Psychology Inventory Scores</a></li>
+  <li><a href="#sec:featset:mfcc" id="toc-sec:featset:mfcc" class="nav-link" data-scroll-target="#sec\:featset\:mfcc"><span class="header-section-number">7.5</span> MFCC</a></li>
+  </ul></li>
+  <li><a href="#sec:data" id="toc-sec:data" class="nav-link" data-scroll-target="#sec\:data"><span class="header-section-number">8</span> Data Collection</a>
+  <ul class="collapse">
+  <li><a href="#sec:setup:preproc" id="toc-sec:setup:preproc" class="nav-link" data-scroll-target="#sec\:setup\:preproc"><span class="header-section-number">8.1</span> Preprocessing</a></li>
+  </ul></li>
+  <li><a href="#sec:exp" id="toc-sec:exp" class="nav-link" data-scroll-target="#sec\:exp"><span class="header-section-number">9</span> Experiment</a>
+  <ul class="collapse">
+  <li><a href="#sec:exp:task" id="toc-sec:exp:task" class="nav-link" data-scroll-target="#sec\:exp\:task"><span class="header-section-number">9.1</span> Tasks &amp; Systems</a>
+  <ul class="collapse">
+  <li><a href="#sec:exp:task:genre" id="toc-sec:exp:task:genre" class="nav-link" data-scroll-target="#sec\:exp\:task\:genre"><span class="header-section-number">9.1.1</span> Music Genre Classification</a></li>
+  <li><a href="#sec:exp:task:autotagging" id="toc-sec:exp:task:autotagging" class="nav-link" data-scroll-target="#sec\:exp\:task\:autotagging"><span class="header-section-number">9.1.2</span> Music Auto-Tagging</a></li>
+  <li><a href="#sec:exp:task:recsys" id="toc-sec:exp:task:recsys" class="nav-link" data-scroll-target="#sec\:exp\:task\:recsys"><span class="header-section-number">9.1.3</span> Music Recommendation</a></li>
+  </ul></li>
+  <li><a href="#sec:exp:task:setup" id="toc-sec:exp:task:setup" class="nav-link" data-scroll-target="#sec\:exp\:task\:setup"><span class="header-section-number">9.2</span> Task Simulation Setup</a></li>
+  </ul></li>
+  <li><a href="#sec:analysis" id="toc-sec:analysis" class="nav-link" data-scroll-target="#sec\:analysis"><span class="header-section-number">10</span> Analytic Strategy</a></li>
+  <li><a href="#sec:result" id="toc-sec:result" class="nav-link" data-scroll-target="#sec\:result"><span class="header-section-number">11</span> Results</a></li>
+  <li><a href="#sec:lim_fut" id="toc-sec:lim_fut" class="nav-link" data-scroll-target="#sec\:lim_fut"><span class="header-section-number">12</span> Limitations and Future Works</a></li>
+  <li><a href="#sec:conclusion" id="toc-sec:conclusion" class="nav-link" data-scroll-target="#sec\:conclusion"><span class="header-section-number">13</span> Conclusion</a></li>
+  <li><a href="#sec:ack" id="toc-sec:ack" class="nav-link" data-scroll-target="#sec\:ack"><span class="header-section-number">14</span> Acknowledgement</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">“Butter Lyrics Over Hominy Grit”: Comparing Audio and Psychology-Based Text Features in MIR Tasks</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+<div>
+  <div class="abstract">
+    <div class="block-title">Abstract</div>
+    <p>Psychology research has shown that song lyrics are a rich source of data, yet they are often overlooked in the field of MIR compared to audio. In this paper, we provide an initial assessment of the usefulness of features drawn from lyrics for various fields, such as MIR and Music Psychology. To do so, we assess the performance of lyric-based text features on 3 MIR tasks, in comparison to audio features. Specifically, we draw sets of text features from the field of Natural Language Processing and Psychology. Further, we estimate their effect on performance while statistically controlling for the effect of audio features, by using a hierarchical regression statistical model. Lyric-based features show a small but statistically significant effect, that anticipates further research. Implications and directions for future studies are discussed.</p>
+  </div>
+</div>
+
+
+</header>
+
+
+<section id="sec:introduction" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="sec:introduction"><span class="header-section-number">4.1</span> Introduction</h2>
+<p><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Popular Western music very often contains lyrics. Social science research has shown informative relationships between popular songs and their lyrical content: e.g., country music lyrics rarely include political concepts <span class="citation" data-cites="van2005world"><a href="#ref-van2005world" role="doc-biblioref">[1]</a></span>, songs with more typical <span class="citation" data-cites="north2020relationship"><a href="#ref-north2020relationship" role="doc-biblioref">[2]</a></span> and more negative <span class="citation" data-cites="brand2019cultural"><a href="#ref-brand2019cultural" role="doc-biblioref">[3]</a></span> lyrics appear to be more successful, and the psychological content of song lyrics appears to correlate with cultural changes in psychological traits <span class="citation" data-cites="dewall2011tuning"><a href="#ref-dewall2011tuning" role="doc-biblioref">[4]</a></span>. As for music consumption, lyrics have also been shown to be a salient component of music in the minds of listeners <span class="citation" data-cites="demetriou2018vocals"><a href="#ref-demetriou2018vocals" role="doc-biblioref">[5]</a></span>. Furthermore, <span class="citation" data-cites="howlin2020patients"><a href="#ref-howlin2020patients" role="doc-biblioref">[6]</a></span> showed that patients are more likely to choose music with lyrics when participating in music-based pain reduction interventions; <span class="citation" data-cites="ali2006songs"><a href="#ref-ali2006songs" role="doc-biblioref">[7]</a></span> showed that lyrics enhance self reported emotional responses to music, although melody had an overall larger effect, and <span class="citation" data-cites="brattico2011functional"><a href="#ref-brattico2011functional" role="doc-biblioref">[8]</a></span> showed a number of additional brain regions were active during the listening of sad music with lyrics, vs.&nbsp;sad music without lyrics.</p>
+<p>In the Music Information Retrieval (MIR) field, some interest for lyrics and how they can be used to improve MIR tasks has been shown. Popular uses of lyrics for MIR tasks consider mood classification <span class="citation" data-cites="hu2010lyrics mcvicar2011mining hu2009lyric wang2011music"><a href="#ref-hu2010lyrics" role="doc-biblioref">[9]</a>, <a href="#ref-mcvicar2011mining" role="doc-biblioref">[10]</a>, <a href="#ref-hu2009lyric" role="doc-biblioref">[11]</a>, <a href="#ref-wang2011music" role="doc-biblioref">[12]</a></span>, genre classification <span class="citation" data-cites="mayer2008rhyme tsaptsinos2017lyrics"><a href="#ref-mayer2008rhyme" role="doc-biblioref">[13]</a>, <a href="#ref-tsaptsinos2017lyrics" role="doc-biblioref">[14]</a></span> and topic detection for indexing and browsing <span class="citation" data-cites="kleedorfer2008oh sasaki2014lyricsradar"><a href="#ref-kleedorfer2008oh" role="doc-biblioref">[15]</a>, <a href="#ref-sasaki2014lyricsradar" role="doc-biblioref">[16]</a></span>. <span class="citation" data-cites="ellis2015quantifying"><a href="#ref-ellis2015quantifying" role="doc-biblioref">[17]</a></span> also proposed a metric to assess the novelty of lyrics, and suggested that novelty can play a role in music preference.</p>
+<p>From these findings, one can conclude that lyrics are a rich data source. Although MIR interests have historically focused more on audio, lyrics information may fruitfully be leveraged for various MIR tasks. Still, there are many possible ways to extract information from lyrics text, and it is an open question what information extraction procedure will turn out most fruitful. To gain more insight into this, we present a study investigating several textual feature sets. In shaping these sets—acknowledging potential value of the topic for social science research—we are inspired by the way text analysis has been performed in the Psychology domain, and draw several of our extractors from prior work in that field. We will assess the performance of these textual feature sets on 3 common MIR tasks, and will statistically control for the effect of each chosen feature set, including an audio feature set for comparison. Our analysis will be performed on a large dataset from the online Musixmatch lyrics catalogue.</p>
+<p>In the remainder of the paper, in Section<a href="#sec:relatedworks" data-reference-type="ref" data-reference="sec:relatedworks">2</a>, we discuss relevant previous work on text information extraction in the Psychology literature. Section<a href="#sec:resdes" data-reference-type="ref" data-reference="sec:resdes">3</a> will subsequently explain our research design, after which Section<a href="#sec:featset" data-reference-type="ref" data-reference="sec:featset">4</a> discusses the feature sets we used. Section<a href="#sec:data" data-reference-type="ref" data-reference="sec:data">5</a> describes the data collection and pre-processing procedures, after which Section<a href="#sec:exp" data-reference-type="ref" data-reference="sec:exp">6</a> details the experimental design. Section<a href="#sec:analysis" data-reference-type="ref" data-reference="sec:analysis">7</a> justifies our chosen analytical strategy, followed by a presentation of results in Section<a href="#sec:result" data-reference-type="ref" data-reference="sec:result">8</a> and the conclusion in Section<a href="#sec:conclusion" data-reference-type="ref" data-reference="sec:conclusion">10</a>.</p>
+</section>
+<section id="sec:relatedworks" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Related Work</h1>
+<p>The field of Psychology has long pondered the importance of the words people choose to use, and how this reflects their individual differences <span class="citation" data-cites="tausczik2010psychological"><a href="#ref-tausczik2010psychological" role="doc-biblioref">[18]</a></span>. The features we use in present work are primarily inspired by two prior lines of work in which Natural Language Processing (NLP) techniques were applied in psychology research: one employing closed-vocabulary lexicon approaches, the other employing open vocabulary approaches. Firstly, <span class="citation" data-cites="neuman2016personality"><a href="#ref-neuman2016personality" role="doc-biblioref">[19]</a></span> used NLP techniques to derive estimates of personality for music genres. Specifically, they created a lexicon (a meaningful group of words) from psychology research that described personality dimensions, as well as a corpus of lyrics, separated into music genres. They then computed the similarity between the lyrics of music genres and the groups of personality dimension words, and considered this result to be an estimate of the personality dimension represented in the lyrics of each genre. Lexicon-based approaches have generally been popular, also thanks to the release of the Linguistic Inquiry Word Count (LIWC) lexicon-based software&nbsp;<span class="citation" data-cites="pennebaker2015development"><a href="#ref-pennebaker2015development" role="doc-biblioref">[20]</a></span>; e.g., in the context of lyrics,&nbsp;<span class="citation" data-cites="markowitz201727"><a href="#ref-markowitz201727" role="doc-biblioref">[21]</a></span> used it to examine psychological distress in the lyrics of musicians that committed suicide vs.&nbsp;those who had not.</p>
+<p>Secondly, <span class="citation" data-cites="schwartz2013personality"><a href="#ref-schwartz2013personality" role="doc-biblioref">[22]</a></span> demonstrated the usefulness of an open vocabulary approach vs.&nbsp;a lexicon approach while examining personality in the context of online social networks. Although lexicons are carefully curated and meaningful, they are also time-consuming to create and context-specific. In contrast, data-driven techniques can automatically estimate latent topics from groups of words that tend do appear together. <span class="citation" data-cites="schwartz2013personality"><a href="#ref-schwartz2013personality" role="doc-biblioref">[22]</a></span> showed relationships between personality scores and automatically extracted latent topics. Further, they showed that the open vocabulary approach may have stronger correlations to self-reported personality scores than the closed-vocabulary lexicon approaches.</p>
+</section>
+<section id="sec:resdes" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Research Design</h1>
+<div id="fig:experimental_pipeline" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="figs/LyricPsych_Overview.pdf" class="img-fluid" style="width:90.0%"></p>
+<figcaption>Overview of the experimental pipeline.</figcaption>
+</figure>
+</div>
+<p>In this study, we seek to examine the relative importance of lyric-based text features—especially features drawn from psychology research— for various popular MIR tasks. We wish to compare this importance to that of conventional audio based features.</p>
+<p>An overview of our experimental pipeline is given in Figure&nbsp;<a href="#fig:experimental_pipeline" data-reference-type="ref" data-reference="fig:experimental_pipeline">1</a>. Various feature sets will feed into various systems, that are appropriate for various MIR machine learning tasks. We employ a full-factorial experimental design for feature sets, tasks, and the systems attached to each task, which means we research all the possible combinations of those factors. For each combination, we will employ the traditional train-validation-test machine learning setup. Performance results on the test sets will feed into our statistical analysis, where we will explicitly control for the effect of each of the feature sets.</p>
+</section>
+<section id="sec:featset" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Feature Sets</h1>
+<p>In this work, we will consider 5 lyric-based text feature sets and an audio-based feature set. More details are given in the following subsections; a summary of the dimensionalities of all feature sets is given in Table&nbsp;<a href="#tab:feat_dim" data-reference-type="ref" data-reference="tab:feat_dim">1</a>.</p>
+<section id="sec:featset:lingfeat" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="sec:featset:lingfeat"><span class="header-section-number">7.1</span> Linguistic Features</h2>
+<p>As baseline textual features for this study, we first extract several simple <em>linguistic</em> features:</p>
+<ul>
+<li><p><em>NumWords:</em> the number of words included in the lyrics text.</p></li>
+<li><p><em>NumUniqueWords:</em> the number of unique words in the lyrics text.</p></li>
+<li><p><em>NumStopWords:</em> the number of stop words in the lyrics text<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p></li>
+<li><p><em>NumRareWords</em> the number of words that appeared in less than <span class="math inline">\(5\)</span> lyrics.</p></li>
+<li><p><em>NumCommonWords</em> the number of words extremely commonly used within a lyrics corpus. We set the threshold as the 30% percentile of the document frequency of words.</p></li>
+</ul>
+<p>Along with the absolute number, we also compute the ratio over the total number of words for each lyrics text.</p>
+</section>
+<section id="sec:featset:topic" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="sec:featset:topic"><span class="header-section-number">7.2</span> Topic Modeling</h2>
+<p>As a more advanced feature extraction technique, we employ probabilistic Latent Semantic Analysis (pLSA)&nbsp;<span class="citation" data-cites="DBLP:journals/ml/Hofmann01"><a href="#ref-DBLP:journals/ml/Hofmann01" role="doc-biblioref">[24]</a></span> for <em>topic</em> modeling. We treat each of the lyric texts as a document, and will take the found topic distribution for a given document as the document feature. We chose the number of topics <span class="math inline">\(K=25\)</span>, which maximizes validation log-perplexity. Taking advantage of the unsupervised learning setup, we use the total pool of songs to setup the training-validation-test split.</p>
+</section>
+<section id="sec:featset:LIWC" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="sec:featset:LIWC"><span class="header-section-number">7.3</span> LIWC</h2>
+<p>Linguistic Inquiry Word Count (LIWC) is a software package built on a lexicon that has been validated for text analysis in psychological studies <span class="citation" data-cites="pennebaker2015development"><a href="#ref-pennebaker2015development" role="doc-biblioref">[20]</a></span>. It uses a curated lexicon, separated into 73 categories (e.g., the category ‘Social Processes’ includes references to family and friends). The software outputs the counts of words in a given text for each of the 73 categories. We employ the latest LIWC, released in 2015.</p>
+</section>
+<section id="sec:featset:inventory_scores" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="sec:featset:inventory_scores"><span class="header-section-number">7.4</span> Psychology Inventory Scores</h2>
+<p>We will consider two more feature sets, inspired by psychology inventory scores: a feature set focusing on <em>personality</em> and a feature set focusing on <em>values</em>. In both cases, we will use lexicons from literature. However, rather than performing a word count as was done in LIWC, we will use more contemporary NLP techniques based on word embeddings.</p>
+<p>Contemporary personality theory is derived from lexical studies: it has been suggested that meaningful individual psychological differences between people are captured in the adjectives that describe people <span class="citation" data-cites="goldberg1990alternative"><a href="#ref-goldberg1990alternative" role="doc-biblioref">[25]</a></span>. Although the number of meaningful clusters of adjectives (called Personality Dimensions) is under debate, the OCEAN or Big-Five model is often used. It is composed of 5 traits : Openness to Experience, Conscientiousness, Extroversion, Agreeableness and Neuroticism&nbsp;<span class="citation" data-cites="goldberg1990alternative"><a href="#ref-goldberg1990alternative" role="doc-biblioref">[25]</a></span>. Our <em>personality</em> feature set consists of 2 word clusters per dimension, comprised of words representing positive and negative aspects for each personality dimension, derived from prior research <span class="citation" data-cites="saucier1996evidence"><a href="#ref-saucier1996evidence" role="doc-biblioref">[26]</a></span>.</p>
+<p>Personal <em>values</em> are another important component of identity, though less studied. They are stable over time and represent who people want to be, targeting the most important things for them in life at the most abstract level. The traditional way to obtain people’s personal values is through questionnaires, but recent works focused on NLP techniques to extract them from text&nbsp;<span class="citation" data-cites="wilson2016disentangling wilson2018building liu2019personality"><a href="#ref-wilson2016disentangling" role="doc-biblioref">[27]</a>, <a href="#ref-wilson2018building" role="doc-biblioref">[28]</a>, <a href="#ref-liu2019personality" role="doc-biblioref">[29]</a></span>. In our work, we used the value inventory and lexicon from&nbsp;<span class="citation" data-cites="wilson2018building"><a href="#ref-wilson2018building" role="doc-biblioref">[28]</a></span>.</p>
+<p>Both for the <em>personality</em> and <em>values</em> feature sets, we will exploit the <code>word2vec</code> model&nbsp;<span class="citation" data-cites="DBLP:conf/nips/MikolovSCCD13"><a href="#ref-DBLP:conf/nips/MikolovSCCD13" role="doc-biblioref">[30]</a></span> to approximate distances between lyrics and the various inventory categories in the feature sets. For this, we use the model pre-trained on the Google News dataset<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. The average distance score <span class="math inline">\(s_{d,c}\)</span> for each lyric text <span class="math inline">\(d\)</span>, and category <span class="math inline">\(c\)</span> is computed by taking the average cosine distance between the words belonging to the lyrics and the categories, respectively: <span class="math display">\[s_{d, c} = \frac{1}{|\mathcal{W}_d||\mathcal{W}_c|}\sum_{n\in\mathcal{W}_d}\sum_{m\in\mathcal{W}_c} \frac{\langle \mathbf{v}_n, \mathbf{v}_m \rangle}{||\mathbf{v}_n|| \cdot ||\mathbf{v}_m||}\]</span> where <span class="math inline">\(\mathcal{W}_d\)</span> and <span class="math inline">\(\mathcal{W}_c\)</span> represent the set of words belonging to the lyrics text <span class="math inline">\(d\)</span> and the category <span class="math inline">\(c\)</span>. <span class="math inline">\(v_n\)</span> and <span class="math inline">\(v_m\)</span> denote the pre-trained word vectors corresponding to word <span class="math inline">\(n\)</span> in the lyrics and word <span class="math inline">\(m\)</span> in the category, respectively.</p>
+</section>
+<section id="sec:featset:mfcc" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="sec:featset:mfcc"><span class="header-section-number">7.5</span> MFCC</h2>
+<p>Finally, we employ a set of audio features based on the Mel-Frequency Cepstral Coefficients (MFCC). We include these, such that the effect of the lyric-based text features can be compared to a commonly used feature set from the primary modality of interest in many MIR tasks. Specifically, we adopt the feature computation introduced in&nbsp;<span class="citation" data-cites="DBLP:conf/ismir/ChoiFSC17"><a href="#ref-DBLP:conf/ismir/ChoiFSC17" role="doc-biblioref">[31]</a></span> with <span class="math inline">\(40\)</span> mel bins.</p>
+<div id="tab:feat_dim">
+<table class="caption-top table">
+<caption>Number of dimensions per feature set</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Feature Set</th>
+<th style="text-align: center;">Dimensions</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Audio</td>
+<td style="text-align: center;">&nbsp;240</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">LIWC</td>
+<td style="text-align: center;">&nbsp;73</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Values</td>
+<td style="text-align: center;">&nbsp;49</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Topics</td>
+<td style="text-align: center;">&nbsp;25</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Personality</td>
+<td style="text-align: center;">&nbsp;10</td>
+<td></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Linguistic</td>
+<td style="text-align: center;">&nbsp;9</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="sec:data" class="level1" data-number="8">
+<h1 data-number="8"><span class="header-section-number">8</span> Data Collection</h1>
+<p>We analyzed the lyrics contained in the Musixmatch dataset<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, which is the official lyrics metadata selection integrated in the Million Song Dataset (MSD) &nbsp;<span class="citation" data-cites="DBLP:conf/ismir/Bertin-MahieuxEWL11"><a href="#ref-DBLP:conf/ismir/Bertin-MahieuxEWL11" role="doc-biblioref">[32]</a></span>, a collection of relevant data and metadata for one million popular contemporary songs. <a href="https://www.musixmatch.com/">Musixmatch</a> is a lyrics and music language platform. The Musixmatch community drives the content production by adding, correcting, syncing and translating lyrics of songs. The process of lyrics quality verification involves several steps, including spam detection, formatting, spelling and translation checking. These steps are accomplished by the use of both artificial intelligence and machine learning models. In addition, they are manually verified by more than <span class="math inline">\(2000\)</span> Curators worldwide, and a local team of Musixmatch Editors, who are native speakers in different languages.</p>
+<p>The data used for the purpose of this project consists of <span class="math inline">\(182,808\)</span> lyrics, plus relevant metadata such as the unique identifier, artist and title. The data encompasses <span class="math inline">\(20,219\)</span> unique artists over various genres of music.</p>
+<section id="sec:setup:preproc" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="sec:setup:preproc"><span class="header-section-number">8.1</span> Preprocessing</h2>
+<p>For the given lyrics dataset, we consider the following preprocessing steps: the sentence strings are 1) tokenized and 2) lemmatized, followed by 3) stop-words filtering and 4) filtering extremely rare and extremely common words (see Section&nbsp;<a href="#sec:featset:lingfeat" data-reference-type="ref" data-reference="sec:featset:lingfeat">4.1</a>). Finally, we filter out non-English lyrics by a filtering process using the topic modeling. More precisely, we fit the topic model to detect whether the topics contain non-English words above a certain threshold. Songs that mostly load on non-English topics are removed.</p>
+</section>
+</section>
+<section id="sec:exp" class="level1" data-number="9">
+<h1 data-number="9"><span class="header-section-number">9</span> Experiment</h1>
+<section id="sec:exp:task" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="sec:exp:task"><span class="header-section-number">9.1</span> Tasks &amp; Systems</h2>
+<p>As shown in Figure&nbsp;<a href="#fig:experimental_pipeline" data-reference-type="ref" data-reference="fig:experimental_pipeline">1</a>, to assess the lyrics feature set, we consider <span class="math inline">\(3\)</span> popular MIR machine learning tasks; for each of these, we use <span class="math inline">\(3\)</span> different commonly used types of systems, and a task-specific performance measure is considered, as detailed below.</p>
+<section id="sec:exp:task:genre" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="sec:exp:task:genre"><span class="header-section-number">9.1.1</span> Music Genre Classification</h3>
+<p>Music Genre Classification (MGC) is a multi-class classification problem. Typically, a set of music genres is given as the classes, and music audio content or features are used as the observations. In this study, we examine <span class="math inline">\(3\)</span> machine learning based systems: <em>Gaussian Naive Bayes</em> (GNV), <em>Logistic Regression</em> (LR) and the <em>Multi-Layer Perceptron</em> (MLP). For performance quantification, we opt for <em>classification accuracy</em>.</p>
+<p>For this task, we use the data in the intersection between our lyrics database and the part of the MSD for which the music genre mapping introduced in <span class="citation" data-cites="DBLP:conf/ismir/Schreiber15"><a href="#ref-DBLP:conf/ismir/Schreiber15" role="doc-biblioref">[33]</a></span> can be made. By choosing the intersection with the MSD, our audio features can be extracted from the MSD preview audio excerpts. Due to genre label availability, this leads to <span class="math inline">\(67,719\)</span> songs being used in this task.</p>
+</section>
+<section id="sec:exp:task:autotagging" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="sec:exp:task:autotagging"><span class="header-section-number">9.1.2</span> Music Auto-Tagging</h3>
+<p>Music Auto-Tagging (MAT) is often formulated as a multi-label classification problem in which multiple positive labels may exist for one input music observation. We used the same set of systems as in the MGC task<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>. Again, we cross-match to the MSD, now also considering MSD’s LastFM social tags. Similarly to&nbsp;<span class="citation" data-cites="DBLP:conf/ismir/ChoiFSC17"><a href="#ref-DBLP:conf/ismir/ChoiFSC17" role="doc-biblioref">[31]</a></span>, we choose to focus on the <span class="math inline">\(50\)</span> most frequent tags from the dataset. The <em>Area Under Curve - Receiver Operating Characteristic</em> (AUC-ROC) is used as the performance measure, which will be referred to as <span class="math inline">\(AUC^{song}\)</span> for the rest of this paper<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>. Due to tagging label availability, <span class="math inline">\(137,095\)</span> songs are used under this task.</p>
+</section>
+<section id="sec:exp:task:recsys" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="sec:exp:task:recsys"><span class="header-section-number">9.1.3</span> Music Recommendation</h3>
+<p>Finally, Music Recommendation (MR) is considered for a user-related retrieval task. In particular, we consider a cold-start scenario, in which a batch of songs is newly introduced to the market, and required to be recommended to users. Due to the lack of previous interaction history, in such a scenario, a model will be maximally dependent on item attributes. As this is a substantially different type of task than the previous classification tasks, a different set of the systems common to the recommender systems field is used. <em>Item Nearest Neighbor</em> (INN) is a memory-based collaborative filtering method, which recommends the items closest to those that the user had consumed. We employ the feature vector introduced in Section&nbsp;<a href="#sec:featset" data-reference-type="ref" data-reference="sec:featset">4</a> to compute the distance between entities using the cosine distance. We also use the <em>Feature-augmented Matrix Factorization</em> (FMF)&nbsp;<span class="citation" data-cites="DBLP:conf/ismir/LiangZE15"><a href="#ref-DBLP:conf/ismir/LiangZE15" role="doc-biblioref">[34]</a></span> method, as well as the <em>Factorization Machine</em>&nbsp;<span class="citation" data-cites="DBLP:conf/icdm/Rendle10"><a href="#ref-DBLP:conf/icdm/Rendle10" role="doc-biblioref">[35]</a></span> (FM). These models are more sophisticated collaborative recommenders, which also are capable of exploiting item attributes. The systems are developed and evaluated using the MSD-Echonest dataset&nbsp;<span class="citation" data-cites="DBLP:conf/ismir/Bertin-MahieuxEWL11"><a href="#ref-DBLP:conf/ismir/Bertin-MahieuxEWL11" role="doc-biblioref">[32]</a></span>. Due to limits on available computational resources, we exploit a densified subset with <span class="math inline">\(96,551\)</span> users and <span class="math inline">\(66,850\)</span> songs from the initial song pool with the lyrics<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. Finally, the binarized <em>normalized Discounted Cumulative Gain</em> (nDCG) is considered as performance measure, for the top-<span class="math inline">\(100\)</span> songs recommended.</p>
+</section>
+</section>
+<section id="sec:exp:task:setup" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="sec:exp:task:setup"><span class="header-section-number">9.2</span> Task Simulation Setup</h2>
+<p>All MIR tasks above are machine learning tasks, but the systems and data we choose to use for them did not yet exist in a real-life system. Therefore, we ran the machine learning procedures to initiate them. For this, for each task, we randomly split the available song data into <em>training</em>/<em>validation</em>/<em>test</em> subsets by a ratio of <span class="math inline">\(8:1:1\)</span>. Each model is trained using the <em>training</em> set and evaluated on the <em>validation</em> set to tune the hyper-parameters. Once the optimal hyper-parameters are found, final performance is measured on the the <em>test</em> set.</p>
+<p>For MLP and FMF, which have more than one hyper-parameter, automatic hyper-parameter tuning is conducted through a Bayesian approach, using the Gaussian Process<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a><a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>. Every search process iterates through <span class="math inline">\(50\)</span> training-validation procedures to reach the optimal point. For the MGC and MAT tasks, the hyper-parameters are searched at every trial, while in the MR task, the search process runs only once and is used for all the other trials.</p>
+</section>
+</section>
+<section id="sec:analysis" class="level1" data-number="10">
+<h1 data-number="10"><span class="header-section-number">10</span> Analytic Strategy</h1>
+<p>We wish to assess the usefulness of each of the feature sets for the 3 MIR tasks. Therefore, the resulting performance score from each trial run in our experimental setup (see Section&nbsp;<a href="#sec:resdes" data-reference-type="ref" data-reference="sec:resdes">3</a>) forms the measurement that is our outcome variable of interest. We seek to estimate the relative contribution of each feature set, while statistically controlling for the contribution of all other variables in the analysis. In addition, we assess whether feature sets perform better or worse, depending on the task.</p>
+<p>Our data has a nested structure. Specifically, we might say that our systems are nested within the tasks: each task is likely to influence the score, as will the underlying systems that were used for each task. Further, not all systems were used in all tasks. To account for this structure, we employed hierarchical regression models which allow for the modeling of variances of nested data.</p>
+<p>The typical example for this category of models is the task of modeling the standardized test scores of various students within various schools. Test scores may be due to the performance of the student, but the school itself may also influence the scores. In this case, the students are said to be nested within the school. If we wanted to accurately assess the effect of e.g.&nbsp;a specific teaching technique on the scores of the students, we would want to statistically control for the effect of the nested structure. A hierarchical regression allows for us to estimate the variance in both intercept and slope of the school, to more accurately assess the effect of the teaching technique on the score of the student. For example, the following equations allow us to model the varying intercepts and slopes of each school:</p>
+<p><span id="eq-1"><span class="math display">\[
+y_i = a_{j[i]} + \beta x_i + \epsilon_i\\
+\tag{10.1}\]</span></span> <span id="eq-2"><span class="math display">\[
+\alpha_j = a_0 + b_0 u_j + \eta_{j1}\\
+\tag{10.2}\]</span></span> <span id="eq-3"><span class="math display">\[
+\beta_j = a_1 + b_1 u_j + \eta_{j2}
+\tag{10.3}\]</span></span></p>
+<p>where <span class="math inline">\(i\)</span> refers to the individual students, and <span class="math inline">\(j[i]\)</span> refers to the school that student <span class="math inline">\(i\)</span> attends. The first line is similar to a classic regression, where the <span class="math inline">\(x\)</span> represents a predictor at the level of student, the teaching technique in our example, and the <span class="math inline">\(\epsilon\)</span> represents the error term of the main regression. However, equations (<a href="#eq:2" data-reference-type="ref" data-reference="eq:2">[eq:2]</a>) and (<a href="#eq:3" data-reference-type="ref" data-reference="eq:3">[eq:3]</a>) allow for the modeling of the intercept and slope respectively, where the <span class="math inline">\(u\)</span> and <span class="math inline">\(\eta\)</span> expressions are the predictors and error terms at the school levels.</p>
+<p>By statistically controlling for these additional variances, hierarchical modeling allows for a more precise estimate of the variables of interest. A more complete discussion can be found in <span class="citation" data-cites="gelman2006data"><a href="#ref-gelman2006data" role="doc-biblioref">[36]</a></span>.</p>
+<p>In our study, we treat the task similarly to the school in our example, and the systems similarly to the students. By controlling for these variances, we estimate the effect of each feature set. From the resulting parameter estimates, we extract 95 % confidence intervals, which we then interpret for our results.</p>
+<p>This approach also allows for the comparison of models containing different specifications, where the specifications refer to which specific parameter estimates are computed. As some parameters may not meaningfully contribute to the variance, their effects will be estimated at very close to 0, and may be removed to improve model fit. Indices of fitness, i.e.&nbsp;Akaike and Bayesian Information Criteria (AIC and BIC respectively) give an estimate of model fit, which is penalized by the number of terms. We can therefore arrive at the best-fitting model with the fewest parameters estimated, by systematically removing poorly performing parameter estimates, comparing successive fit indices e.g. with a Likelihood Ratio Test.</p>
+<p>Following from our strategy, we examined the usefulness of the inclusion of the various features sets on the 3 considered MIR tasks. Our variables of interest are 1) binary indicators for the inclusion of each of the feature sets: <em>linguistic</em>, <em>topic</em>, <em>LIWC</em>, <em>personality</em>, and <em>values</em>, as well as the set of audio features, where (0 = not included, 1 = included), 2) a categorical variable representing each of the MIR tasks, 3) a categorical variable representing the systems implemented within each task, and 4) the resulting Measurement scores which were standardized within each task for comparability. We further estimate whether feature sets perform better or worse for certain tasks, by examining interactions between each feature set, and our task variable. Feature sets had differing numbers of sub-dimensions which were not individually analyzed (see Table <a href="#tab:feat_dim" data-reference-type="ref" data-reference="tab:feat_dim">1</a>)<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a>.</p>
+<p>We ran multiple models and compared the results of our feature sets across specifications (see Figure 2). Model specifications varied based on 1) how we accounted for the nested structure (i.e.&nbsp;task and systems), as we can estimate intercepts for task, for system, for system within task, as well as as slopes for tasks, for systems, and for systems within task, etc., and 2) the interaction terms we specified, i.e. whether we estimated an interaction term for a given feature set and our task variable.</p>
+<div id="fig:parameterestimates" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="figs/figure2.pdf" class="img-fluid"></p>
+<figcaption>A: Parameter estimates of 5 hierarchical regression models. Error bars are 95% confidence intervals, bootstrapped 500 times. B: Specific parameters that are estimated in the each of the models. Parameters that form the structure of the model are denoted both in red and with a “!” symbol, feature sets of primary interest are denoted in black, and variables for which two terms separated by a “*” are interaction terms.</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec:result" class="level1" data-number="11">
+<h1 data-number="11"><span class="header-section-number">11</span> Results</h1>
+<div id="fig:parameterestimates4" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><embed src="figs/figure3.pdf" class="img-fluid"></p>
+<figcaption>A: Parameter estimates of model 4. Error bars are 95% confidence intervals. Interaction terms are denoted with the “*” symbol. B: Predicted scores for the inclusion of <em>LIWC</em> on each of three MIR tasks, where 1 indicates that it was included and 0 indicates that it was not. C: Predicted scores for the inclusion of <em>values</em> on each of three MIR tasks, where 1 indicates that it was included and 0 indicates that it was not.</figcaption>
+</figure>
+</div>
+<p>We assessed models with two nested structures specified, where the parameters estimated are referred to as “random effects”. The first included intercepts for each task, and the system used within task. The second estimated the same intercepts, and additionally estimated a slope for each system. For each of these two random effects structures, we then determined which parameters to estimate, referred to as “fixed effects”. Specifically, we estimated parameters for each feature set, and interactions between all feature sets and the tasks. We first specified a “maximal” model, with all features and the task variable, and all two-way interactions among these variables. To remove unnecessary parameters, we ran a protocol which iteratively removed parameter estimates, retaining only those that either 1) significantly decrease model fit if not included, or 2) do not significantly decrease model fit if excluded. The Step function in the <em>lmerTest</em> package, was used for this phase <span class="citation" data-cites="kuznetsova2017lmertest"><a href="#ref-kuznetsova2017lmertest" role="doc-biblioref">[37]</a></span>. What remained were two interaction terms: the interaction between <em>values</em> and task, and between <em>LIWC</em> and task. As such, we estimated models with no interaction terms, as well as models with and without each of those interaction terms. When we assessed the interaction term, we also included the main effect of task. Thus, we also ran models with and without task included. The 5 models included for interpretation were those that converged without error. Parameter estimates are shown in Figure&nbsp;<a href="#fig:parameterestimates" data-reference-type="ref" data-reference="fig:parameterestimates">2</a>A, and Figure&nbsp;<a href="#fig:parameterestimates" data-reference-type="ref" data-reference="fig:parameterestimates">2</a>B shows which parameters were estimated in each model. For the full specification of our models, we refer readers to the reproducibility package<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> accompanying this paper.</p>
+<p>As is shown in Figure&nbsp;<a href="#fig:parameterestimates" data-reference-type="ref" data-reference="fig:parameterestimates">2</a>A, we observe a consistent, large, positive effect of <em>audio features</em> on the score, and no meaningful effects of <em>topic</em> and <em>personality</em> feature sets. Further, we observe a consistent, small, positive effect of <em>values</em> across our specifications. This effect size increases in model 4, where the interaction between values and task was included. Similarly, <em>LIWC</em> shows a small but positive effect, that appears to decrease when the interaction term of <em>LIWC</em> and task is included. This suggests that <em>LIWC</em> and <em>values</em> may perform differently, depending on the task.</p>
+<p>To clarify if this is the case, we examined the parameter estimates of model 4, which included interaction terms for both <em>LIWC</em> and <em>values</em> (see Figure&nbsp;<a href="#fig:parameterestimates4" data-reference-type="ref" data-reference="fig:parameterestimates4">3</a>A). Although both interaction terms were statistically significant, we observe that the confidence intervals for the main effect of task are very wide. This was expected, as 1) we were assessing an interaction effect which might increase the width of a the confidence interval, and 2) we were largely accounting for this variance by standardizing the score within each task, and by including task in the random effect structure. Figures<a href="#fig:parameterestimates4" data-reference-type="ref" data-reference="fig:parameterestimates4">3</a>A and<a href="#fig:parameterestimates4" data-reference-type="ref" data-reference="fig:parameterestimates4">3</a>B show the predicted values for both <em>LIWC</em> and <em>values</em> across tasks. Although the score was higher when <em>LIWC</em> was included in the MR task and when <em>values</em> was included in the MAT task, the predicted estimates are imprecise, as evidenced by the wide confidence intervals. As such, a more sensitive study design is likely required to obtain estimates of these interaction effects, e.g. analyses on individual dimensions of feature sets, to establish the most informative features, and/or more systems and more MIR tasks. Thus, we conclude that <em>linguistic</em> and <em>values</em> feature sets show the most consistent positive effects, and that <em>LIWC</em> and <em>values</em> may vary in performance based on task.</p>
+</section>
+<section id="sec:lim_fut" class="level1" data-number="12">
+<h1 data-number="12"><span class="header-section-number">12</span> Limitations and Future Works</h1>
+<p>Several limitations are still present in our current study. Firstly, although our feature sets did show promising yet small effect sizes, we did not assess the performance of individual dimensions. Given that the feature sets vary greatly in both in terms of the number and content of sub-dimensions (see Table&nbsp;<a href="#tab:feat_dim" data-reference-type="ref" data-reference="tab:feat_dim">1</a>), reducing the overall set may result in a more sensitive set of features to examine.</p>
+<p>Secondly, we did not consider subgroups of users, or of groups of songs. It may be possible that some users are more sensitive to the content of lyrics than others, and that lyric-sensitive users would benefit far more from lyric features than others. Further, it may be the case that lyrics are very important in some groups of songs vs.&nbsp;others (e.g Hip-Hop music vs.&nbsp;electronic dance music). Further research could examine the potential existence of a lyric-sensitive sub-group of users, lyric-sensitive songs, and how these two may interact.</p>
+<p>Thirdly, aspects of our experimental design can be elaborated in future work: 1) Although we strategically sampled a limited number of MIR tasks and a limited number of systems, we did not fully address all possibilities. For instance, future work can include more contemporary systems such as deep learning, thereby increasing generalizability of our results. 2) Certain task metrics could be improved, although we strategically designed our experiment to prevent local noise from skewing our conclusions: e.g.&nbsp;a different performance measure for the genre classification (i.e.&nbsp;AUC-ROC) could deliver a more accurate experimental result, given its skewed class distribution.</p>
+<p>Lastly, the reliability of all of our feature sets could be better assessed in the future. This is particularly true of our <em>personality</em> features: they contain words that have been shown to describe individuals that have or lack in personality traits, but it is not clear that individuals with those traits use the specific words that describe them.</p>
+</section>
+<section id="sec:conclusion" class="level1" data-number="13">
+<h1 data-number="13"><span class="header-section-number">13</span> Conclusion</h1>
+<p>Although the <em>audio</em> features in our analysis most positively affected performance on various MIR tasks, our lyric-based text features did show some promise. More specifically, <em>linguistic</em> and <em>values</em> feature sets showed consistent, small effect sizes. Given that the interactions between <em>LIWC</em> and task were significant, it may be the case that <em>LIWC</em> features are also useful. We can conclude that text-based features drawn from Psychology literature anticipate further research, and that further investigations addressing the current limitations will lead to better data-driven understanding of the role lyrics play in music consumption.</p>
+</section>
+<section id="sec:ack" class="level1" data-number="14">
+<h1 data-number="14"><span class="header-section-number">14</span> Acknowledgement</h1>
+<p>This work was carried out on the Dutch national e-infrastructure with the support of SURF Cooperative.</p>
+
+
+<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-van2005world" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">R. W. Van Sickel, <span>“A world without citizenship: On (the absence of) politics and ideology in country music lyrics, 1960–2000,”</span> <em>Popular music and society</em>, vol. 28, no. 3, pp. 313–331, 2005.</div>
+</div>
+<div id="ref-north2020relationship" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">A. C. North, A. E. Krause, and D. Ritchie, <span>“<span class="nocase">The relationship between pop music and lyrics: A computerized content analysis of the United Kingdom’s weekly top five singles, 1999–2013</span>,”</span> <em>Psychology of Music</em>, pp. 1–24, 2020, doi: <a href="https://doi.org/10.1177/0305735619896409">10.1177/0305735619896409</a>.</div>
+</div>
+<div id="ref-brand2019cultural" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">C. O. Brand, A. Acerbi, and A. Mesoudi, <span>“Cultural evolution of emotional expression in 50 years of song lyrics,”</span> <em>Evolutionary Human Sciences</em>, vol. 1, pp. 1–14, 2019.</div>
+</div>
+<div id="ref-dewall2011tuning" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">C. N. DeWall, R. S. Pond Jr, W. K. Campbell, and J. M. Twenge, <span>“Tuning in to psychological change: Linguistic markers of psychological traits and emotions over time in popular US song lyrics.”</span> <em>Psychology of Aesthetics, Creativity, and the Arts</em>, vol. 5, no. 3, pp. 200–207, 2011.</div>
+</div>
+<div id="ref-demetriou2018vocals" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">A. Demetriou, A. Jansson, A. Kumar, and R. M. Bittner, <span>“Vocals in music matter: The relevance of vocals in the minds of listeners,”</span> in <em>Proceedings of the 19th international society for retrieval conference, <span>ISMIR</span> 2018, paris, france, september 23-27, 2018</em>, E. Gómez, X. Hu, E. Humphrey, and E. Benetos, Eds., 2018, pp. 514–520.</div>
+</div>
+<div id="ref-howlin2020patients" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">C. Howlin and B. Rooney, <span>“Patients choose music with high energy, danceability, and lyrics in analgesic music listening interventions,”</span> <em>Psychology of Music</em>, vol. 0, no. 0, pp. 1–14, 2020, doi: <a href="https://doi.org/10.1177/0305735620907155">10.1177/0305735620907155</a>.</div>
+</div>
+<div id="ref-ali2006songs" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">S. O. Ali and Z. F. Peynircioğlu, <span>“Songs and emotions: Are lyrics and melodies equal partners?”</span> <em>Psychology of music</em>, vol. 34, no. 4, pp. 511–534, 2006.</div>
+</div>
+<div id="ref-brattico2011functional" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">E. Brattico <em>et al.</em>, <span>“A functional <span>MRI</span> study of happy and sad emotions in music with and without lyrics,”</span> <em>Frontiers in psychology</em>, vol. 2, pp. 1–16, 2011.</div>
+</div>
+<div id="ref-hu2010lyrics" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[9] </div><div class="csl-right-inline">X. Hu and J. S. Downie, <span>“When lyrics outperform audio for music mood classification: <span>A</span> feature analysis,”</span> in <em>Proceedings of the 11th international society for music information retrieval conference, <span>ISMIR</span> 2010, utrecht, netherlands, august 9-13, 2010</em>, J. S. Downie and R. C. Veltkamp, Eds., International Society for Music Information Retrieval, 2010, pp. 619–624.</div>
+</div>
+<div id="ref-mcvicar2011mining" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[10] </div><div class="csl-right-inline">M. McVicar, T. Freeman, and T. D. Bie, <span>“Mining the correlation between lyrical and audio features and the emergence of mood,”</span> in <em>Proceedings of the 12th international society for music information retrieval conference, <span>ISMIR</span> 2011, miami, florida, USA, october 24-28, 2011</em>, A. Klapuri and C. Leider, Eds., University of Miami, 2011, pp. 783–788.</div>
+</div>
+<div id="ref-hu2009lyric" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[11] </div><div class="csl-right-inline">Y. Hu, X. Chen, and D. Yang, <span>“Lyric-based song emotion detection with affective lexicon and fuzzy clustering method,”</span> in <em>Proceedings of the 10th international society for music information retrieval conference, <span>ISMIR</span> 2009, kobe international conference center, kobe, japan, october 26-30, 2009</em>, K. Hirata, G. Tzanetakis, and K. Yoshii, Eds., International Society for Music Information Retrieval, 2009, pp. 123–128.</div>
+</div>
+<div id="ref-wang2011music" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[12] </div><div class="csl-right-inline">X. Wang, X. Chen, D. Yang, and Y. Wu, <span>“Music emotion classification of <span>Chinese</span> songs based on lyrics using <span>TF*IDF</span> and rhyme,”</span> in <em>Proceedings of the 12th international society for music information retrieval conference, <span>ISMIR</span> 2011, miami, florida, USA, october 24-28, 2011</em>, A. Klapuri and C. Leider, Eds., University of Miami, 2011, pp. 765–770.</div>
+</div>
+<div id="ref-mayer2008rhyme" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[13] </div><div class="csl-right-inline">R. Mayer, R. Neumayer, and A. Rauber, <span>“Rhyme and style features for musical genre classification by song lyrics,”</span> in <em>Proceedings of the 9th international society for music information retrieval conference, <span>ISMIR</span> 2008, drexel university, philadelphia, PA, USA, september 14-18, 2008</em>, J. P. Bello, E. Chew, and D. Turnbull, Eds., 2008, pp. 337–342.</div>
+</div>
+<div id="ref-tsaptsinos2017lyrics" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[14] </div><div class="csl-right-inline">A. Tsaptsinos, <span>“Lyrics-based music genre classification using a hierarchical attention network,”</span> in <em>Proceedings of the 18th international society for music information retrieval conference, <span>ISMIR</span> 2017, suzhou, china, october 23-27, 2017</em>, S. J. Cunningham, Z. Duan, X. Hu, and D. Turnbull, Eds., 2017, pp. 694–701.</div>
+</div>
+<div id="ref-kleedorfer2008oh" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[15] </div><div class="csl-right-inline">F. Kleedorfer, P. Knees, and T. Pohle, <span>“Oh oh oh whoah! <span>Towards</span> automatic topic detection in song lyrics,”</span> in <em>Proceedings of the 9th international society for music information retrieval conference, <span>ISMIR</span> 2008, drexel university, philadelphia, PA, USA, september 14-18, 2008</em>, J. P. Bello, E. Chew, and D. Turnbull, Eds., 2008, pp. 287–292.</div>
+</div>
+<div id="ref-sasaki2014lyricsradar" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[16] </div><div class="csl-right-inline">S. Sasaki, K. Yoshii, T. Nakano, M. Goto, and S. Morishima, <span>“LyricsRadar: <span>A</span> lyrics retrieval system based on latent topics of lyrics,”</span> in <em>Proceedings of the 15th international society for music information retrieval conference, <span>ISMIR</span> 2014, taipei, taiwan, october 27-31, 2014</em>, H.-M. Wang, Y.-H. Yang, and J. H. Lee, Eds., 2014, pp. 585–590.</div>
+</div>
+<div id="ref-ellis2015quantifying" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[17] </div><div class="csl-right-inline">R. J. Ellis, Z. Xing, J. Fang, and Y. Wang, <span>“Quantifying lexical novelty in song lyrics.”</span> in <em>ISMIR</em>, 2015, pp. 694–700.</div>
+</div>
+<div id="ref-tausczik2010psychological" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[18] </div><div class="csl-right-inline">Y. R. Tausczik and J. W. Pennebaker, <span>“The psychological meaning of words: <span>LIWC</span> and computerized text analysis methods,”</span> <em>Journal of language and social psychology</em>, vol. 29, no. 1, pp. 24–54, 2010.</div>
+</div>
+<div id="ref-neuman2016personality" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[19] </div><div class="csl-right-inline">Y. Neuman, L. Perlovsky, Y. Cohen, and D. Livshits, <span>“The personality of music genres,”</span> <em>Psychology of Music</em>, vol. 44, no. 5, pp. 1044–1057, 2016.</div>
+</div>
+<div id="ref-pennebaker2015development" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[20] </div><div class="csl-right-inline">J. W. Pennebaker, R. L. Boyd, K. Jordan, and K. Blackburn, <span>“The development and psychometric properties of <span>LIWC2015</span>,”</span> 2015.</div>
+</div>
+<div id="ref-markowitz201727" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[21] </div><div class="csl-right-inline">D. M. Markowitz and J. T. Hancock, <span>“The <span>27 Club: Music</span> lyrics reflect psychological distress,”</span> <em>Communication Reports</em>, vol. 30, no. 1, pp. 1–13, 2017.</div>
+</div>
+<div id="ref-schwartz2013personality" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[22] </div><div class="csl-right-inline">H. A. Schwartz <em>et al.</em>, <span>“Personality, gender, and age in the language of social media: The open-vocabulary approach,”</span> <em>PloS one</em>, vol. 8, no. 9, pp. 1–16, 2013.</div>
+</div>
+<div id="ref-DBLP:books/daglib/0022921" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[23] </div><div class="csl-right-inline">S. Bird, E. Klein, and E. Loper, <em>Natural language processing with <span>Python</span></em>. O’Reilly, 2009.</div>
+</div>
+<div id="ref-DBLP:journals/ml/Hofmann01" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[24] </div><div class="csl-right-inline">T. Hofmann, <span>“Unsupervised learning by probabilistic latent semantic analysis,”</span> <em>Machine Learning</em>, vol. 42, no. 1/2, pp. 177–196, 2001, doi: <a href="https://doi.org/10.1023/A:1007617005950">10.1023/A:1007617005950</a>.</div>
+</div>
+<div id="ref-goldberg1990alternative" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[25] </div><div class="csl-right-inline">L. R. Goldberg, <span>“An alternative "description of personality": The <span>Big-Five</span> factor structure.”</span> <em>Journal of personality and social psychology</em>, vol. 59, no. 6, pp. 1216–1229, 1990.</div>
+</div>
+<div id="ref-saucier1996evidence" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[26] </div><div class="csl-right-inline">G. Saucier and L. R. Goldberg, <span>“Evidence for the <span>Big Five</span> in analyses of familiar english personality adjectives,”</span> <em>European Journal of Personality</em>, vol. 10, no. 1, pp. 61–77, 1996.</div>
+</div>
+<div id="ref-wilson2016disentangling" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[27] </div><div class="csl-right-inline">S. Wilson, R. Mihalcea, R. Boyd, and J. Pennebaker, <span>“Disentangling topic models: A cross-cultural analysis of personal values through words,”</span> in <em>Proceedings of the first workshop on NLP and computational social science</em>, 2016, pp. 143–152.</div>
+</div>
+<div id="ref-wilson2018building" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[28] </div><div class="csl-right-inline">S. R. Wilson, Y. Shen, and R. Mihalcea, <span>“Building and validating hierarchical lexicons with a case study on personal values,”</span> in <em>International conference on social informatics</em>, Springer, 2018, pp. 455–470.</div>
+</div>
+<div id="ref-liu2019personality" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[29] </div><div class="csl-right-inline">H. Liu, Y. Huang, Z. Wang, K. Liu, X. Hu, and W. Wang, <span>“Personality or value: A comparative study of psychographic segmentation based on an online review enhanced recommender system,”</span> <em>Applied Sciences</em>, vol. 9, no. 10, pp. 1–28, 2019.</div>
+</div>
+<div id="ref-DBLP:conf/nips/MikolovSCCD13" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[30] </div><div class="csl-right-inline">T. Mikolov, I. Sutskever, K. Chen, G. S. Corrado, and J. Dean, <span>“Distributed representations of words and phrases and their compositionality,”</span> in <em>Advances in neural information processing systems 26: 27th annual conference on neural information processing systems 2013. Proceedings of a meeting held december 5-8, 2013, lake tahoe, nevada, united states</em>, C. J. C. Burges, L. Bottou, Z. Ghahramani, and K. Q. Weinberger, Eds., 2013, pp. 3111–3119.</div>
+</div>
+<div id="ref-DBLP:conf/ismir/ChoiFSC17" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[31] </div><div class="csl-right-inline">K. Choi, G. Fazekas, M. B. Sandler, and K. Cho, <span>“Transfer learning for music classification and regression tasks,”</span> in <em>Proceedings of the 18th international society for music information retrieval conference, <span>ISMIR</span> 2017, suzhou, china, october 23-27, 2017</em>, S. J. Cunningham, Z. Duan, X. Hu, and D. Turnbull, Eds., 2017, pp. 141–149.</div>
+</div>
+<div id="ref-DBLP:conf/ismir/Bertin-MahieuxEWL11" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[32] </div><div class="csl-right-inline">T. Bertin-Mahieux, D. P. W. Ellis, B. Whitman, and P. Lamere, <span>“<span>The Million Song Dataset</span>,”</span> in <em>Proceedings of the 12th international society for music information retrieval conference, <span>ISMIR</span> 2011, miami, florida, USA, october 24-28,2011</em>, A. Klapuri and C. Leider, Eds., University of Miami, 2011, pp. 591–596.</div>
+</div>
+<div id="ref-DBLP:conf/ismir/Schreiber15" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[33] </div><div class="csl-right-inline">H. Schreiber, <span>“Improving genre annotations for the <span>Million Song Dataset</span>,”</span> in <em>Proceedings of the 16th international society for music information retrieval conference, <span>ISMIR</span> 2015, m<span>á</span>laga, spain, october 26-30, 2015</em>, M. Müller and F. Wiering, Eds., 2015, pp. 241–247.</div>
+</div>
+<div id="ref-DBLP:conf/ismir/LiangZE15" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[34] </div><div class="csl-right-inline">D. Liang, M. Zhan, and D. P. W. Ellis, <span>“Content-aware collaborative music recommendation using pre-trained neural networks,”</span> in <em>Proceedings of the 16th international society for music information retrieval conference, <span>ISMIR</span> 2015, m<span>á</span>laga, spain, october 26-30, 2015</em>, M. Müller and F. Wiering, Eds., 2015, pp. 295–301.</div>
+</div>
+<div id="ref-DBLP:conf/icdm/Rendle10" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[35] </div><div class="csl-right-inline">S. Rendle, <span>“Factorization machines,”</span> in <em>Proceedings of the 10th <span>IEEE</span> international conference on data mining, <span>ICDM</span> 2010, sydney, australia, 14-17 december 2010</em>, G. I. Webb, B. Liu, C. Zhang, D. Gunopulos, and X. Wu, Eds., <span>IEEE</span> Computer Society, 2010, pp. 995–1000. doi: <a href="https://doi.org/10.1109/ICDM.2010.127">10.1109/ICDM.2010.127</a>.</div>
+</div>
+<div id="ref-gelman2006data" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[36] </div><div class="csl-right-inline">A. Gelman and J. Hill, <em>Data analysis using regression and multilevel/hierarchical models</em>. Cambridge university press, 2006.</div>
+</div>
+<div id="ref-kuznetsova2017lmertest" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[37] </div><div class="csl-right-inline">A. Kuznetsova, P. B. Brockhoff, and R. H. B. Christensen, <span>“<span class="nocase">lmerTest</span> package: Tests in linear mixed effects models,”</span> <em>Journal of statistical software</em>, vol. 82, no. 13, 2017.</div>
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Quoted words are lyrics written by Clifford Smith, from the song “The What”, by the Notorious B.I.G. featuring Methodman, on the album “Ready to Die”, released in 1994.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>As we will focus on English lyrics in this study, we used the English stop words corpus from the Natural Language Toolkit (NLTK)&nbsp;<span class="citation" data-cites="DBLP:books/daglib/0022921"><a href="#ref-DBLP:books/daglib/0022921" role="doc-biblioref">[23]</a></span><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://code.google.com/archive/p/word2vec/" class="uri">https://code.google.com/archive/p/word2vec/</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p><a href="http://millionsongdataset.com/musixmatch/" class="uri">http://millionsongdataset.com/musixmatch/</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>We employ a one-vs-rest strategy for the LR and GNV, which transforms a multi-label classification problem to multiple binary classification problems.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>We employed song-wise aggregation for this study<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>We initially matched the original Echonest dataset to our initial song pool and <span class="math inline">\(30\%\)</span> of randomly sampled users. Consequentially, we apply a filter, such that users who interacted with more than <span class="math inline">\(5\)</span> songs remain, and vice versa for songs.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>We use the implementation from the <a href="https://scikit-optimize.github.io/stable/index.html"><em>scikit-optimize</em></a> package.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p>We do not search the hyper-parameters for FM and use a manually tuned setup, mostly due to the computational complexity required for this specific model.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Analyses were conducted on two servers running R 3.6.3. and 3.4.4.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p><a href="https://github.com/mmc-tudelft/lyricpsych-ISMIR20" class="uri">https://github.com/mmc-tudelft/lyricpsych-ISMIR20</a><a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../_chapters/ISMIR_2018/ISMIR_2018.html" class="pagination-link" aria-label="Vocals in Music Matter: the Relevance of Vocals in the Minds of Listeners">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Vocals in Music Matter: the Relevance of Vocals in the Minds of Listeners</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../_chapters/ISMIR_2024/ISMIR_2024.html" class="pagination-link" aria-label="Towards Automated Personal Value Estimation in Song Lyrics">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Towards Automated Personal Value Estimation in Song Lyrics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
