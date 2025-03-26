@@ -1,9 +1,29 @@
 ---
-title: "Vocals in Music Matter"
-format: html
-bibliography: references.bib
+abstract: |
+  In music information retrieval, we often make assertions about what
+  features of music are important to study, one of which is vocals.
+  While the importance of vocals in music preference is both intuitive
+  and anticipated by psychological theory, we have not found any survey
+  studies that confirm this commonly held assertion. We address two
+  questions: (1) what components of music are most salient to people's
+  musical taste, and (2) how do vocals rank relative to other components
+  of music, in regards to whether people like or dislike a song. Lastly,
+  we explore the aspects of the voice that listeners find important. Two
+  surveys of Spotify users were conducted. The first gathered
+  open-format responses that were then card-sorted into semantic
+  categories by the team of researchers. The second asked respondents to
+  rank the semantic categories derived from the first survey. Responses
+  indicate that vocals were a salient component in the minds of
+  listeners. Further, vocals ranked high as a self-reported factor for a
+  listener liking or disliking a track, among a statistically
+  significant ranking of musical attributes. In addition, we open
+  several new interesting problem areas that have yet to be explored in
+  MIR.
+bibliography:
+- references.bib
+title: "Vocals in Music Matter: the Relevance of Vocals in the Minds of
+  Listeners"
 ---
-
 
 # Introduction
 
@@ -12,7 +32,7 @@ on content-based understanding of music. The type of content-based
 analysis studied over time is typically driven by the data available to
 the task, or the interests of the specific researchers. An alternative
 motivator could be to study topics that are salient in the minds of
-listeners, especially with respect to listener’s musical preference.
+listeners, especially with respect to listener's musical preference.
 Specifically, understanding which attributes of music contribute the
 most to music preference, and their relative weight, could help guide
 research efforts. One attribute of music we would expect to be salient
@@ -24,14 +44,14 @@ ability to communicate exceeds that of any other species studied thus
 far, with both speech and singing being cultural universals reliant on
 vocal production. It is theorized that the advanced human ability to
 communicate, discriminate, and to experience emotional responses in
-vocalizations has allowed for the emergence of music (Juslin and Laukka
-2003). Our emotions are often accompanied by involuntary changes in our
+vocalizations has allowed for the emergence of music [@juslin2003music].
+Our emotions are often accompanied by involuntary changes in our
 physiology and nonverbal expressions, such as facial expressions and
-vocalizations (Porges 2001). Our reactions to the emotional content
-expressed in the vocals in music may have similar effects. As such, much
-psychological research has focused on the singing voice even more than
-speech, due to the precision required to execute and process musical
-vocalizations (S. Hutchins and Moreno 2013). This makes musical vocals a
+vocalizations [@porges2001polyvagal]. Our reactions to the emotional
+content expressed in the vocals in music may have similar effects. As
+such, much psychological research has focused on the singing voice even
+more than speech, due to the precision required to execute and process
+musical vocalizations [@hutchins2013linked]. This makes musical vocals a
 well-anticipated candidate for study as a feature of music, as we would
 expect people to have a sophisticated ability to deliver, empathize
 with, and process vocal communications.
@@ -39,19 +59,19 @@ with, and process vocal communications.
 We would therefore expect that the vocals in music would be an
 especially salient component, if not the most salient. While a complete
 review is beyond the scope of this paper, some research is particularly
-worth noting. For example, it has been shown that both adults (Weiss,
-Trehub, and Schellenberg 2012) and children (Weiss et al. 2015) recall
-melodies more correctly when sung with the voice than when played with
-instruments. Hutchins and Moreno (S. Hutchins and Moreno 2013) review
-literature that shows relatively precise perception of pitch in the
-human voice, yet fewer noticeable pitch errors in the voice relative to
-musical instruments or synthesized voices (S. M. Hutchins and Peretz
-2012). Neuroscience studies show specific areas of the brain involved in
-processing human voices (Belin et al. 2000). Although similar regions of
-the brain are involved in processing both music and voices, there is
-differential processing of the human voice relative to music (Armony et
-al. 2015). As such, the human voice may be processed as a uniquely
-significant sound.
+worth noting. For example, it has been shown that both adults
+[@weiss2012something] and children [@weiss2015enhanced] recall melodies
+more correctly when sung with the voice than when played with
+instruments. Hutchins and Moreno [@hutchins2013linked] review literature
+that shows relatively precise perception of pitch in the human voice,
+yet fewer noticeable pitch errors in the voice relative to musical
+instruments or synthesized voices [@hutchins2012frog]. Neuroscience
+studies show specific areas of the brain involved in processing human
+voices [@belin2000voice]. Although similar regions of the brain are
+involved in processing both music and voices, there is differential
+processing of the human voice relative to music
+[@armony2015specificity]. As such, the human voice may be processed as a
+uniquely significant sound.
 
 However, while prior research suggests that vocals would be especially
 relevant to music preference, no study to our knowledge has assessed the
@@ -80,29 +100,28 @@ not be easily disentangled.
 # Vocals in Semantic Data
 
 Prior research has shown that semantic descriptors of music may be an
-appropriate means for users to query music databases (Lesaffre et al.
-2008). Given the large amount of semantic data available to Spotify such
-as playlist titles, search results, and artist biographies, one might
-hypothesize that terms describing the vocals would commonly appear in
-this implicit data.
+appropriate means for users to query music databases
+[@lesaffre2008potential]. Given the large amount of semantic data
+available to Spotify such as playlist titles, search results, and artist
+biographies, one might hypothesize that terms describing the vocals
+would commonly appear in this implicit data.
 
 ## Playlist Tags and Search Queries
 
 Non-common words or groups of words and emojis appearing in the titles
-of a large number of Spotify’s user-generated playlists were aggregated
+of a large number of Spotify's user-generated playlists were aggregated
 to create a list of the 1000 most frequently occurring *tags*. Each of
 these 1000 tags was assigned a category by a professional curator based
 on the tag itself and information from the tracks most frequently
 associated with the tag. The categories, determined by the curator, were
-Genre (e.g. “K-Pop”), Mood (e.g. “sad”), Activity (e.g. “gym”),
-Popularity (e.g. “Today’s hits”), Artist (e.g. “Justin Timberlake”), Era
-(e.g. “70’s”), Culture (e.g. “Latin”), Lyrics (e.g. “clean”), Rhythm
-(e.g. “groove”), Instrument (e.g. “guitar”), Tempo (e.g. “slow”), Voice
-(e.g. “female singers”), or Other (e.g. “favorites”, “Jenna”, “hi”). The
+Genre (e.g. "K-Pop"), Mood (e.g. "sad"), Activity (e.g. "gym"),
+Popularity (e.g. "Today's hits"), Artist (e.g. "Justin Timberlake"), Era
+(e.g. "70's"), Culture (e.g. "Latin"), Lyrics (e.g. "clean"), Rhythm
+(e.g. "groove"), Instrument (e.g. "guitar"), Tempo (e.g. "slow"), Voice
+(e.g. "female singers"), or Other (e.g. "favorites", "Jenna", "hi"). The
 percentage of playlists containing each of these tag categories is
-displayed in
-Figure <a href="#fig:playlist-tags" data-reference-type="ref"
-data-reference="fig:playlist-tags">1</a>, top.
+displayed in Figure [1](#fig:playlist-tags){reference-type="ref"
+reference="fig:playlist-tags"}, top.
 
 Surprisingly, we see that tags explicitly related to vocals are not at
 all common compared to other types of tags, with the most common tags
@@ -129,27 +148,26 @@ artist biographies compared with Wikipedia term
 frequencies.</figcaption>
 </figure>
 
-We perform a similar analysis on descriptive terms from one day’s worth
+We perform a similar analysis on descriptive terms from one day's worth
 of Spotify search queries, and obtained similarly inconclusive results,
-shown in Figure <a href="#fig:playlist-tags" data-reference-type="ref"
-data-reference="fig:playlist-tags">1</a>, middle.
+shown in Figure [1](#fig:playlist-tags){reference-type="ref"
+reference="fig:playlist-tags"}, middle.
 
 ## Artist Biographies
 
 Finally, we analyze descriptive terms that occur in 100,000
 professionally authored artist biographies on Spotify. We use
-TF-IDF (Sparck Jones 1972) to retrieve terms that are distinctive to
-music writers, by comparing the frequency of terms in artist biographies
-to the frequency of the same terms in Wikipedia. The 100 most
-distinctive terms, grouped into semantic categories, are displayed in
-Figure <a href="#fig:playlist-tags" data-reference-type="ref"
-data-reference="fig:playlist-tags">1</a>, bottom. While many terms are
-much more frequent in music text (e.g. “bassist”, “jazz”, “songwriter”),
-vocals specifically were not more frequently mentioned than other
-musical aspects. One can hypothesize that the TF-IDF method is
-insufficient for this particular task, due to vocals being commonly
-discussed outside the context of music, and thus a relatively more
-common word in Wikipedia.
+TF-IDF [@sparck1972statistical] to retrieve terms that are distinctive
+to music writers, by comparing the frequency of terms in artist
+biographies to the frequency of the same terms in Wikipedia. The 100
+most distinctive terms, grouped into semantic categories, are displayed
+in Figure [1](#fig:playlist-tags){reference-type="ref"
+reference="fig:playlist-tags"}, bottom. While many terms are much more
+frequent in music text (e.g. "bassist", "jazz", "songwriter"), vocals
+specifically were not more frequently mentioned than other musical
+aspects. One can hypothesize that the TF-IDF method is insufficient for
+this particular task, due to vocals being commonly discussed outside the
+context of music, and thus a relatively more common word in Wikipedia.
 
 ## Conclusions
 
@@ -168,11 +186,11 @@ In order to disentangle the unique effect of the voice among other
 components, we gathered explicit data from users. Specifically, we
 conducted two online survey studies in order to collect self-reported
 data on 1) the salient components of music, and 2) their relative
-ranking. Unlike prior surveys, such as (Lesaffre et al. 2008) that
+ranking. Unlike prior surveys, such as [@lesaffre2008potential] that
 presented users with short musical excerpts and groupings of adjectives
 to rate, we allowed the users to freely enter their responses to the
-question "When you listen to music, what things about the music do you
-notice?". This allowed us to assess whether vocals would emerge as a
+question \"When you listen to music, what things about the music do you
+notice?\". This allowed us to assess whether vocals would emerge as a
 salient component of music. In addition, we explored what aspects of the
 voice users report as being important to their musical taste.
 
@@ -196,13 +214,13 @@ researchers.
 ### Recruitment
 
 A random sample of 50,000 people was drawn from the database of
-Spotify’s Monthly Active Users (MUAs), divided approximately equally
+Spotify's Monthly Active Users (MUAs), divided approximately equally
 between the United States and Canada. 860 individuals responded to the
 survey, however 224 did not respond to any questions beyond the consent
 form, and 9 were removed for giving nonsensical responses. 626
-individuals — 338 women (average age 33.6 years with a standard
+individuals --- 338 women (average age 33.6 years with a standard
 deviation of 16.1); 288 men (average age 30.6 years with a standard
-deviation of 15.5) — completed the survey in its entirety.
+deviation of 15.5) --- completed the survey in its entirety.
 
 ### Survey
 
@@ -229,7 +247,7 @@ ranked from 1 to 3:
 Lastly, to explore what aspects of vocals may be relevant, participants
 responded to the following:
 
-> *Q4:* (Please ignore these questions if you’ve already mentioned the
+> *Q4:* (Please ignore these questions if you've already mentioned the
 > vocals, the voice, the singer/rapper etc.) (a) When would vocals make
 > you like a song? (b) When would vocals make you dislike a song?
 
@@ -239,29 +257,29 @@ shown a final debriefing screen.
 ### Semantic Categorization
 
 A number of partially completed surveys contained responses sufficiently
-complete for card sorting. 317 sufficient responses — 262 from the
-completed surveys as well as 55 sufficiently complete partial – were
+complete for card sorting. 317 sufficient responses --- 262 from the
+completed surveys as well as 55 sufficiently complete partial -- were
 then card-sorted by a team of researchers. Card-sorting is a common
 technique used in social sciences and elsewhere to discover clusters of
-related concepts (Miller 1969). Traditionally, individuals are presented
-with physical paper “cards” that have terms and/or descriptions printed
-on them, printed pictures, or a group of objects. They are then asked to
-group items in a way that makes sense, given the research question.
-Here, we apply card-sorting to derive semantically meaningful groupings
-of musical components from the freely entered words and phrases that
-participants entered in each field.
+related concepts [@miller1969psychological]. Traditionally, individuals
+are presented with physical paper "cards" that have terms and/or
+descriptions printed on them, printed pictures, or a group of objects.
+They are then asked to group items in a way that makes sense, given the
+research question. Here, we apply card-sorting to derive semantically
+meaningful groupings of musical components from the freely entered words
+and phrases that participants entered in each field.
 
-Participant responses to *Q1* (i.e. “When you listen to music, what
-things do you notice?”) were printed twice, once next to their response
-to *Q3a* (“What about \_ would make you like a song?”), and again next
-to the response to *Q3b* (“What about \_ would make you dislike a
-song?”). As such, researchers had respondents’ top 3 terms printed out
+Participant responses to *Q1* (i.e. "When you listen to music, what
+things do you notice?") were printed twice, once next to their response
+to *Q3a* ("What about \_ would make you like a song?"), and again next
+to the response to *Q3b* ("What about \_ would make you dislike a
+song?"). As such, researchers had respondents' top 3 terms printed out
 twice, once next to the positive descriptive aspects of the term, and
-once next to the negative descriptive aspects. A term (e.g. “the
-lyrics”) and its descriptor (e.g. “when they have meaning”) comprised a
-card. Figure <a href="#fig:card-examples" data-reference-type="ref"
-data-reference="fig:card-examples">2</a> shows examples of positive and
-negative cards that were used in card sorting.
+once next to the negative descriptive aspects. A term (e.g. "the
+lyrics") and its descriptor (e.g. "when they have meaning") comprised a
+card. Figure [2](#fig:card-examples){reference-type="ref"
+reference="fig:card-examples"} shows examples of positive and negative
+cards that were used in card sorting.
 
 <figure id="fig:card-examples">
 <div class="center">
@@ -272,8 +290,8 @@ answer to <em>Q3a</em>. (Bottom) Card for an answer to
 <em>Q3b</em>.</figcaption>
 </figure>
 
-As some responses were unclear (e.g. “the melody” was mentioned, but the
-descriptor clearly focused on the quality of the singer’s voice), the
+As some responses were unclear (e.g. "the melody" was mentioned, but the
+descriptor clearly focused on the quality of the singer's voice), the
 research team was instructed to look at both the term and its descriptor
 when determining its semantic category. The researchers then reviewed
 the cards a second time, and defined sub-categories where necessary.
@@ -292,32 +310,30 @@ components to our respondents.
 
 The broad semantic categories determined by the researchers are
 presented in the left column of
-Table <a href="#tab:mus-attributes" data-reference-type="ref"
-data-reference="tab:mus-attributes">[tab:mus-attributes]</a> (note that
-the other results in
-Table <a href="#tab:mus-attributes" data-reference-type="ref"
-data-reference="tab:mus-attributes">[tab:mus-attributes]</a> are from
-Study 2). The category of *Emotion/mood* referred to the ability of a
-song to evoke emotion, whether the emotion was a match or a mismatch to
-the current or desired mood or current activity, whether the emotion was
-desirable or undesirable, and nostalgia. *Voice* included genre related
-terms (e.g. mumble rap, metal, auto-tune, speechiness/rapping),
-descriptions of how the voice is used (e.g. unique/novel, screaming,
-pitch/pitch range, presence or absence of effects,
-intensity/effort/power, emotionality, authenticity, whininess/nasality,
-melodic-ness), skill, the innate qualities of the voice,
-liking/disliking, and the mix/blend. The *Lyrics* category represented
-items that indicated whether or not lyrics were present, their
-intelligibility, the presence of profanity, how “well” crafted they
-were, the “message”, the meaning behind them or general lyrical content
-and how relatable they are. *Beat/Rhythm* referred to whether it was
-liked/disliked, whether it “fit” the song, danceability, and uniqueness.
-The *Structure/complexity* of songs included liking or disliking the
-hook or chorus, and the song length. Instrumentation referred to drums,
-bass, and guitar. *Sound* referred to audio quality and related
-concerns. Self-explanatory categories included *Tempo/BPM*, the mention
-of a *Specific Artist*, *Genre*, *Harmony*, *Chords*, *Musicianship*,
-*Melody*, and *Popularity/Novelty*.
+Table [\[tab:mus-attributes\]](#tab:mus-attributes){reference-type="ref"
+reference="tab:mus-attributes"} (note that the other results in
+Table [\[tab:mus-attributes\]](#tab:mus-attributes){reference-type="ref"
+reference="tab:mus-attributes"} are from Study 2). The category of
+*Emotion/mood* referred to the ability of a song to evoke emotion,
+whether the emotion was a match or a mismatch to the current or desired
+mood or current activity, whether the emotion was desirable or
+undesirable, and nostalgia. *Voice* included genre related terms
+(e.g. mumble rap, metal, auto-tune, speechiness/rapping), descriptions
+of how the voice is used (e.g. unique/novel, screaming, pitch/pitch
+range, presence or absence of effects, intensity/effort/power,
+emotionality, authenticity, whininess/nasality, melodic-ness), skill,
+the innate qualities of the voice, liking/disliking, and the mix/blend.
+The *Lyrics* category represented items that indicated whether or not
+lyrics were present, their intelligibility, the presence of profanity,
+how "well" crafted they were, the "message", the meaning behind them or
+general lyrical content and how relatable they are. *Beat/Rhythm*
+referred to whether it was liked/disliked, whether it "fit" the song,
+danceability, and uniqueness. The *Structure/complexity* of songs
+included liking or disliking the hook or chorus, and the song length.
+Instrumentation referred to drums, bass, and guitar. *Sound* referred to
+audio quality and related concerns. Self-explanatory categories included
+*Tempo/BPM*, the mention of a *Specific Artist*, *Genre*, *Harmony*,
+*Chords*, *Musicianship*, *Melody*, and *Popularity/Novelty*.
 
 ## Survey 2: Component Ranking
 
@@ -333,15 +349,15 @@ above other components.
 ### Recruitment
 
 A randomized sampling method was employed among the database of
-Spotify’s Monthly Active Users (MAUs) that had not opted-out of email
+Spotify's Monthly Active Users (MAUs) that had not opted-out of email
 correspondence. An email with a link to an online survey was sent to
 50,000 potential respondents, approximately equally divided among the
 United States and Canada.
 
-A total of 531 respondents — 263 of which were women (average age 31.8
+A total of 531 respondents --- 263 of which were women (average age 31.8
 years, with a standard deviation of 16.5); 268 were men (average age
-34.2 years, with a standard deviation of 14.8) — completed the survey in
-its entirety. 429 participants completed the first half of the survey
+34.2 years, with a standard deviation of 14.8) --- completed the survey
+in its entirety. 429 participants completed the first half of the survey
 (broad semantic categories), whereas 360 participants completed the
 second half (vocal semantic categories).
 
@@ -349,211 +365,195 @@ second half (vocal semantic categories).
 
 An online consent form was first presented to respondents. The derived
 semantic categories were rephrased to be more easily understood (see
-Table <a href="#tab:mus-attributes" data-reference-type="ref"
-data-reference="tab:mus-attributes">[tab:mus-attributes]</a>,
-Description). Participants were presented with the new list of
-descriptions in random order, and asked to “Please click all the items
-below that would make you like or dislike a song.” They were then
-presented with a list of all the items they had clicked, also in random
-order, and asked to rank them.
+Table [\[tab:mus-attributes\]](#tab:mus-attributes){reference-type="ref"
+reference="tab:mus-attributes"}, Description). Participants were
+presented with the new list of descriptions in random order, and asked
+to "Please click all the items below that would make you like or dislike
+a song." They were then presented with a list of all the items they had
+clicked, also in random order, and asked to rank them.
 
-<div class="table*">
-
-<div class="center">
-
-| **Broad Semantic Category** | **Description** | **Borda score** | **$`p`$-value** |
-|:---|:---|---:|---:|
-| Emotion/mood | How it makes you feel - the emotions/mood | 4641 | **\<0.001** |
-| Voice | Voice/vocals | 3688 | **\<0.001** |
-| Lyrics | Lyrics | 3656 | **\<0.001** |
-| Beat/rhythm | Beat/rhythm | 3460 | **\<0.001** |
-| Structure/Complexity | How it’s composed, the hook, the structure | 2677 | 1.000 |
-| Musicianship | Skill of the musicians, musicianship | 2583 | 1.000 |
-| Melody | The main melody | 2577 | 1.000 |
-| Sound | The “sound”, or the recording quality | 2406 | 1.000 |
-| Specific Artist | The specific artist | 2349 | 1.000 |
-| Genre | The specific genre | 2293 | 1.000 |
-| Instrumentation | The musical instruments (e.g. drums, bass, guitar) | 2084 | 1.000 |
-| Tempo/BPM | How fast or slow the song is | 1828 | 1.000 |
-| Harmony | Harmony | 1763 | 1.000 |
-| Chords | The chords | 1086 | 1.000 |
-| Popularity/Novelty | How popular or unique it is | 777 | 1.000 |
-
-</div>
-
-</div>
+:::: table*
+::: center
+  **Broad Semantic Category**   **Description**                                        **Borda score**   **$p$-value**
+  ----------------------------- ---------------------------------------------------- ----------------- ---------------
+  Emotion/mood                  How it makes you feel - the emotions/mood                         4641     **\<0.001**
+  Voice                         Voice/vocals                                                      3688     **\<0.001**
+  Lyrics                        Lyrics                                                            3656     **\<0.001**
+  Beat/rhythm                   Beat/rhythm                                                       3460     **\<0.001**
+  Structure/Complexity          How it's composed, the hook, the structure                        2677           1.000
+  Musicianship                  Skill of the musicians, musicianship                              2583           1.000
+  Melody                        The main melody                                                   2577           1.000
+  Sound                         The "sound", or the recording quality                             2406           1.000
+  Specific Artist               The specific artist                                               2349           1.000
+  Genre                         The specific genre                                                2293           1.000
+  Instrumentation               The musical instruments (e.g. drums, bass, guitar)                2084           1.000
+  Tempo/BPM                     How fast or slow the song is                                      1828           1.000
+  Harmony                       Harmony                                                           1763           1.000
+  Chords                        The chords                                                        1086           1.000
+  Popularity/Novelty            How popular or unique it is                                        777           1.000
+:::
+::::
 
 As a continuation of our exploratory study of vocal characteristics, a
 second list was then presented, comprised of terms derived from the
 vocal and lyrics semantic categories. For clarity, the terms were
 rephrased as they appear in
-Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>.
+Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}.
 
 ### Analytic Strategy
 
-Responses were subjected to Borda counting (Borda 1781) and Robust Rank
-Aggregation (Kolde et al. 2012). Borda counting is a simple procedure
-for aggregating votes by summing ranks. The Borda score $`B_i`$ for an
-item $`i`$ is computed as
-$`B_i = \sum_{p=0}^N \left( |r_p| - r_{p, i} \right)`$ where $`N`$ is
-the number of participants, $`r_{p,i}`$ is participant $`p`$’s rank of
-item $`i`$, starting at zero, and $`|r_p|`$ is the number of items
-ranked by $`p`$. The Borda method does not naturally extend to partial
-lists(Dwork et al. 2001) — we have chosen to award higher scores to
+Responses were subjected to Borda counting [@Borda1781] and Robust Rank
+Aggregation [@kolde2012robust]. Borda counting is a simple procedure for
+aggregating votes by summing ranks. The Borda score $B_i$ for an item
+$i$ is computed as $B_i = \sum_{p=0}^N \left( |r_p| - r_{p, i} \right)$
+where $N$ is the number of participants, $r_{p,i}$ is participant $p$'s
+rank of item $i$, starting at zero, and $|r_p|$ is the number of items
+ranked by $p$. The Borda method does not naturally extend to partial
+lists[@dwork2001rank] --- we have chosen to award higher scores to
 preferred items in long lists.
 
 To verify the statistical significance of our findings we supplement the
 Borda count with Robust Rank Aggregation (RRA), in which we compare our
 survey results to a null hypothesis. Each item receives a score based on
 its observed position, compared to an expected random ordering. Upper
-bounds to $`p`$-values are computed using Bonferroni correction, with
+bounds to $p$-values are computed using Bonferroni correction, with
 values of 1.0 indicating null findings. In this work we used the
-implementation provided by the
-<span class="smallcaps">RobustRankAggreg</span> package[^1].
+implementation provided by the [RobustRankAggreg]{.smallcaps}
+package[^1].
 
 ### Results and Conclusion
 
 Results can be found in Tables
-<a href="#tab:mus-attributes" data-reference-type="ref"
-data-reference="tab:mus-attributes">[tab:mus-attributes]</a> and
-<a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, with
-categories ordered by descending Borda count. We are able to show
-statistical significance of both the most salient broad and vocal
-semantic categories. Importantly, our results show that the Vocals and
-Lyrics ranked second and third among the list of components (Borda
-scores and RRA agree on the order of the first four broad categories).
-This indicates that, relative to other musical components, respondents
-overall indicated the importance of the vocals and lyrics.
+[\[tab:mus-attributes\]](#tab:mus-attributes){reference-type="ref"
+reference="tab:mus-attributes"} and
+[\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, with categories ordered by descending
+Borda count. We are able to show statistical significance of both the
+most salient broad and vocal semantic categories. Importantly, our
+results show that the Vocals and Lyrics ranked second and third among
+the list of components (Borda scores and RRA agree on the order of the
+first four broad categories). This indicates that, relative to other
+musical components, respondents overall indicated the importance of the
+vocals and lyrics.
 
-<div class="table*">
-
-<div class="center">
-
-|  | **Vocal Semantic Categories** | **Borda score** | **$`p`$-value** |
-|:--:|:---|---:|---:|
-| A | Singing skill | 3423 | **\<0.001** |
-| B | How well the voice fits or matches the rest of the music | 3380 | **\<0.001** |
-| C | Lyrical skill / cleverness / wit | 3145 | **\<0.001** |
-| D | The meaning, or the “message” of the words | 3038 | **0.048** |
-| E | Authenticity / “realness” | 2884 | **\<0.001** |
-| F | Uniqueness | 2780 | **\<0.001** |
-| G | If the voice is emotional | 2771 | **0.006** |
-| H | Voice strength / intensity / effort | 2721 | 1.000 |
-| I | If the voice sounds natural | 2480 | 1.000 |
-| J | Being able to relate | 2256 | 1.000 |
-| K | If the voice is melodic | 2202 | 1.000 |
-| L | Whether or not you can understand the lyrics | 2056 | 1.000 |
-| M | If it’s whiny or nasal | 1801 | 1.000 |
-| N | Whether or not there’s screaming | 1771 | 1.000 |
-| O | The overall pitch, or the range of the pitch | 1400 | 1.000 |
-| P | Whether or not there are lyrics | 1250 | 1.000 |
-| Q | Whether it has production effects on it, like autotune | 1230 | 1.000 |
-| R | Profanity, explicit lyrics | 1086 | 1.000 |
-| S | Whether or not there is rapping | 909 | 1.000 |
-
-</div>
-
-</div>
+:::: table*
+::: center
+      **Vocal Semantic Categories**                                **Borda score**   **$p$-value**
+  --- ---------------------------------------------------------- ----------------- ---------------
+   A  Singing skill                                                           3423     **\<0.001**
+   B  How well the voice fits or matches the rest of the music                3380     **\<0.001**
+   C  Lyrical skill / cleverness / wit                                        3145     **\<0.001**
+   D  The meaning, or the "message" of the words                              3038       **0.048**
+   E  Authenticity / "realness"                                               2884     **\<0.001**
+   F  Uniqueness                                                              2780     **\<0.001**
+   G  If the voice is emotional                                               2771       **0.006**
+   H  Voice strength / intensity / effort                                     2721           1.000
+   I  If the voice sounds natural                                             2480           1.000
+   J  Being able to relate                                                    2256           1.000
+   K  If the voice is melodic                                                 2202           1.000
+   L  Whether or not you can understand the lyrics                            2056           1.000
+   M  If it's whiny or nasal                                                  1801           1.000
+   N  Whether or not there's screaming                                        1771           1.000
+   O  The overall pitch, or the range of the pitch                            1400           1.000
+   P  Whether or not there are lyrics                                         1250           1.000
+   Q  Whether it has production effects on it, like autotune                  1230           1.000
+   R  Profanity, explicit lyrics                                              1086           1.000
+   S  Whether or not there is rapping                                          909           1.000
+:::
+::::
 
 # New Avenues for Research
 
 While the musical attributes related to the broad musical categories
-(Table <a href="#tab:mus-attributes" data-reference-type="ref"
-data-reference="tab:mus-attributes">[tab:mus-attributes]</a>) are well
-studied in MIR, the attributes related to vocals
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>) present a
-number of exciting and unexplored research directions. A limiting factor
-to studying some of these problems, as is often the case, is the
-availability of data, and we encourage researchers to focus data
-collection efforts in these areas as well. A further limiting factor is
-that users of online musical platforms may come from a specific
-demographic, e.g. regular internet users typically younger than 35, who
-engage in music related activities in about one third of the online
-time, have had at least some musical education, and have a preference
-for pop, rock and classical music (Lesaffre et al. 2008). In addition,
-our sample was derived from the U.S. and Canada. As such, a
-cross-cultural sample may differ in their relative preference for
-vocals.
+(Table [\[tab:mus-attributes\]](#tab:mus-attributes){reference-type="ref"
+reference="tab:mus-attributes"}) are well studied in MIR, the attributes
+related to vocals
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}) present a number of exciting and
+unexplored research directions. A limiting factor to studying some of
+these problems, as is often the case, is the availability of data, and
+we encourage researchers to focus data collection efforts in these areas
+as well. A further limiting factor is that users of online musical
+platforms may come from a specific demographic, e.g. regular internet
+users typically younger than 35, who engage in music related activities
+in about one third of the online time, have had at least some musical
+education, and have a preference for pop, rock and classical music
+[@lesaffre2008potential]. In addition, our sample was derived from the
+U.S. and Canada. As such, a cross-cultural sample may differ in their
+relative preference for vocals.
 
 Our exploratory data suggest that there is a vast space of research in
 tagging and measuring different qualities of the singing voice, such as
 whether a singing voice is authentic, powerful, natural, melodic, nasal,
 or emotional
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, rows E, H,
-I, K, M and G). In addition to these categories, determined by untrained
-listeners, there are a number of other more specific categories such as
-modes of phonation that could be explored. Further, in addition to vocal
-qualities, there are genre-centric vocal styles, such as identifying rap
-or screaming
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, rows S and
-O).
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, rows E, H, I, K, M and G). In addition
+to these categories, determined by untrained listeners, there are a
+number of other more specific categories such as modes of phonation that
+could be explored. Further, in addition to vocal qualities, there are
+genre-centric vocal styles, such as identifying rap or screaming
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, rows S and O).
 
 Another interesting and (as far as we are aware) unexplored research
 area is to measure whether a voice fits or blends well with the
 background music
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, row B).
-This is somewhat related to the problem of determining “mashability” in
-automatic-mashup generation. This is a broad problem that is likely
-based on many factors, such as the style of the vocalist compared to the
-background, the way the song is mixed, and the overall expectations of
-the musical genre. We suspect this could be most easily studied when
-isolated vocals/backgrounds are available in order to automatically
-generate examples of vocals that do not match the background by blending
-random combinations.
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, row B). This is somewhat related to the
+problem of determining "mashability" in automatic-mashup generation.
+This is a broad problem that is likely based on many factors, such as
+the style of the vocalist compared to the background, the way the song
+is mixed, and the overall expectations of the musical genre. We suspect
+this could be most easily studied when isolated vocals/backgrounds are
+available in order to automatically generate examples of vocals that do
+not match the background by blending random combinations.
 
-The problem of identifying whether a voice is “unique” is likely
+The problem of identifying whether a voice is "unique" is likely
 challenging
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, row F), as
-it is not necessarily a quality that can be determined in isolation, but
-rather relative to many other voices. One possible approach to this
-problem would be to treat the problem as one of outlier detection.
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, row F), as it is not necessarily a
+quality that can be determined in isolation, but rather relative to many
+other voices. One possible approach to this problem would be to treat
+the problem as one of outlier detection.
 
 Production effects applied to the singing voice are increasingly common,
 especially different types of distortion or the infamous auto-tune
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, row Q).
-Automatic identification of these production effects presents an
-interesting challenge, and one where data could be automatically
-generated with the help of plugins for generating effects and databases
-with isolated vocals with corresponding backgrounds.
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, row Q). Automatic identification of
+these production effects presents an interesting challenge, and one
+where data could be automatically generated with the help of plugins for
+generating effects and databases with isolated vocals with corresponding
+backgrounds.
 
 Measuring the relatability
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, row J) of
-a singer is a quality that is relative to the listener, rather than
-absolute. Factors that could affect a singer’s relatability could
-include the age, gender, culture or language of the singer relative to
-the listener, which might require automatic identification of each of
-these attributes of the singer.
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, row J) of a singer is a quality that is
+relative to the listener, rather than absolute. Factors that could
+affect a singer's relatability could include the age, gender, culture or
+language of the singer relative to the listener, which might require
+automatic identification of each of these attributes of the singer.
 
 Lyric intelligibility
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, row L) has
-not been well studied, and also presents a novel challenge (Ibrahim et
-al. 2017). This problem does not necessarily directly require lyric
-transcription, and may be able to be determined from qualities of the
-audio. Similarly, determining whether a singing voice contains lyrics or
-is wordless has not been studied
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, row P).
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, row L) has not been well studied, and
+also presents a novel challenge [@ibrahim2017intelligibility]. This
+problem does not necessarily directly require lyric transcription, and
+may be able to be determined from qualities of the audio. Similarly,
+determining whether a singing voice contains lyrics or is wordless has
+not been studied
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, row P).
 
-Automatic lyric transcription has been studied (McVicar, Ellis, and Goto
-2014; Kruspe and Fraunhofer 2016) but is not yet solved, and would power
-the automatic estimation of many of these vocal attributes. For
-lyric-related terms, given textual lyrics, while some attributes would
-be relatively simple to estimate (e.g. whether or not there is
-profanity), others present interesting NLP challenges, such as
-estimating whether the lyrics are “clever” or are “meaningful”
-(Table <a href="#tab:voc-attributes" data-reference-type="ref"
-data-reference="tab:voc-attributes">[tab:voc-attributes]</a>, rows R, C,
-and D).
+Automatic lyric transcription has been
+studied [@mcvicar2014leveraging; @kruspe2016retrieval] but is not yet
+solved, and would power the automatic estimation of many of these vocal
+attributes. For lyric-related terms, given textual lyrics, while some
+attributes would be relatively simple to estimate (e.g. whether or not
+there is profanity), others present interesting NLP challenges, such as
+estimating whether the lyrics are "clever" or are "meaningful"
+(Table [\[tab:voc-attributes\]](#tab:voc-attributes){reference-type="ref"
+reference="tab:voc-attributes"}, rows R, C, and D).
 
 # Discussion and Conclusions
 
@@ -579,8 +579,8 @@ research.
 Secondly, users indicated that the ability of a song to evoke emotions
 was the most important factor. This confirms findings in prior research
 of the relevance of emotional content in music, and how it is linked to
-musical preference, e.g. (Krumhansl 2017). Therefore, examining how
-music affects the emotions of listeners remains an important theme.
+musical preference, e.g. [@krumhansl2017listening]. Therefore, examining
+how music affects the emotions of listeners remains an important theme.
 Interestingly, while genre was the most frequent term used to label
 playlists or search for music, respondents did not rank the specific
 genre as important relative to the other attributes. Understanding why
@@ -602,154 +602,4 @@ As such, explicit data-gathering techniques often found in the social
 sciences, as well as collaborations with social scientists, may be of
 great use to MIR researchers.
 
-<div id="refs" class="references csl-bib-body hanging-indent"
-entry-spacing="0">
-
-<div id="ref-armony2015specificity" class="csl-entry">
-
-Armony, Jorge L, William Aubé, Arafat Angulo-Perkins, Isabelle Peretz,
-and Luis Concha. 2015. “The Specificity of Neural Responses to Music and
-Their Relation to Voice Processing: An fMRI-Adaptation Study.”
-*Neuroscience Letters* 593: 35–39.
-
-</div>
-
-<div id="ref-belin2000voice" class="csl-entry">
-
-Belin, Pascal, Robert J Zatorre, Philippe Lafaille, Pierre Ahad, and
-Bruce Pike. 2000. “Voice-Selective Areas in Human Auditory Cortex.”
-*Nature* 403 (6767): 309.
-
-</div>
-
-<div id="ref-Borda1781" class="csl-entry">
-
-Borda, Jean C de. 1781. “Mémoire Sur Les Élections Au Scrutin.”
-*Histoire de l’Academie Royale Des Sciences*.
-
-</div>
-
-<div id="ref-dwork2001rank" class="csl-entry">
-
-Dwork, Cynthia, Ravi Kumar, Moni Naor, and Dandapani Sivakumar. 2001.
-“Rank Aggregation Methods for the Web.” In *Proceedings of the 10th
-International Conference on World Wide Web*, 613–22. ACM.
-
-</div>
-
-<div id="ref-hutchins2012frog" class="csl-entry">
-
-Hutchins, Sean Michael, and Isabelle Peretz. 2012. “A Frog in Your
-Throat or in Your Ear? Searching for the Causes of Poor Singing.”
-*Journal of Experimental Psychology: General* 141 (1): 76.
-
-</div>
-
-<div id="ref-hutchins2013linked" class="csl-entry">
-
-Hutchins, Sean, and Sylvain Moreno. 2013. “The Linked Dual
-Representation Model of Vocal Perception and Production.” *Frontiers in
-Psychology* 4: 825.
-
-</div>
-
-<div id="ref-ibrahim2017intelligibility" class="csl-entry">
-
-Ibrahim, Karim M, David Grunberg, Kat Agres, Chitralekha Gupta, and Ye
-Wang. 2017. “Intelligibility of Sung Lyrics: A Pilot Study.” In.
-International Society for Music Information Retrieval Conference.
-
-</div>
-
-<div id="ref-juslin2003music" class="csl-entry">
-
-Juslin, Patrik N., and Petri Laukka. 2003. “Communication of Emotions in
-Vocal Expression and Musical Performance: Different Channels, Same
-Code?” *Psychological Bulletin* 129: 770–814.
-
-</div>
-
-<div id="ref-kolde2012robust" class="csl-entry">
-
-Kolde, Raivo, Sven Laur, Priit Adler, and Jaak Vilo. 2012. “Robust Rank
-Aggregation for Gene List Integration and Meta-Analysis.”
-*Bioinformatics* 28 (4): 573–80.
-
-</div>
-
-<div id="ref-krumhansl2017listening" class="csl-entry">
-
-Krumhansl, Carol Lynne. 2017. “Listening Niches Across a Century of
-Popular Music.” *Frontiers in Psychology* 8: 431.
-
-</div>
-
-<div id="ref-kruspe2016retrieval" class="csl-entry">
-
-Kruspe, Anna M, and IDMT Fraunhofer. 2016. “Retrieval of Textual Song
-Lyrics from Sung Inputs.” In *INTERSPEECH*, 2140–44.
-
-</div>
-
-<div id="ref-lesaffre2008potential" class="csl-entry">
-
-Lesaffre, Micheline, Liesbeth De Voogdt, Marc Leman, Bernard De Baets,
-Hans De Meyer, and Jean-Pierre Martens. 2008. “How Potential Users of
-Music Search and Retrieval Systems Describe the Semantic Quality of
-Music.” *Journal of the Association for Information Science and
-Technology* 59 (5): 695–707.
-
-</div>
-
-<div id="ref-mcvicar2014leveraging" class="csl-entry">
-
-McVicar, Matt, Daniel PW Ellis, and Masataka Goto. 2014. “Leveraging
-Repetition for Improved Automatic Lyric Transcription in Popular Music.”
-In *Acoustics, Speech and Signal Processing (ICASSP), 2014 IEEE
-International Conference on*, 3117–21. IEEE.
-
-</div>
-
-<div id="ref-miller1969psychological" class="csl-entry">
-
-Miller, George A. 1969. “A Psychological Method to Investigate Verbal
-Concepts.” *Journal of Mathematical Psychology* 6 (2): 169–91.
-
-</div>
-
-<div id="ref-porges2001polyvagal" class="csl-entry">
-
-Porges, Stephen W. 2001. “The Polyvagal Theory: Phylogenetic Substrates
-of a Social Nervous System.” *International Journal of Psychophysiology*
-42 (2): 123–46.
-
-</div>
-
-<div id="ref-sparck1972statistical" class="csl-entry">
-
-Sparck Jones, Karen. 1972. “A Statistical Interpretation of Term
-Specificity and Its Application in Retrieval.” *Journal of
-Documentation* 28 (1): 11–21.
-
-</div>
-
-<div id="ref-weiss2015enhanced" class="csl-entry">
-
-Weiss, Michael W, E Glenn Schellenberg, Sandra E Trehub, and Emily J
-Dawber. 2015. “Enhanced Processing of Vocal Melodies in Childhood.”
-*Developmental Psychology* 51 (3): 370.
-
-</div>
-
-<div id="ref-weiss2012something" class="csl-entry">
-
-Weiss, Michael W, Sandra E Trehub, and E Glenn Schellenberg. 2012.
-“Something in the Way She Sings: Enhanced Memory for Vocal Melodies.”
-*Psychological Science* 23 (10): 1074–78.
-
-</div>
-
-</div>
-
-[^1]: <a href="cran.r-project.org/web/packages/RobustRankAggreg"
-    class="uri">cran.r-project.org/web/packages/RobustRankAggreg</a>
+[^1]: [cran.r-project.org/web/packages/RobustRankAggreg](cran.r-project.org/web/packages/RobustRankAggreg){.uri}

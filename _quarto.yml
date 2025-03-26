@@ -25,4 +25,4 @@ format:
   pdf:
     documentclass: scrreprt
 
-csl: apa.csl
+csl: ieee.csl
